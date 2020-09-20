@@ -12,29 +12,29 @@ const logUserOut = () => ({ type: t.LOG_OUT })
 //#region
 const fetchUser = (userInfo) => dispatch => {
   console.log('userInfo', userInfo);
-  const {email} = userInfo;
+  const { email } = userInfo;
   history.push('/credit-approval')
-  fetch(`${baseUrl}/login`, {
-    method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(userInfo)
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.msg === 'success') {
-        localStorage.setItem("token", data.token)
-        dispatch(setUser({ ...data, userId: email }))
-      } else {
-        // alert('Login Failed', 'Username or Password is incorrect');
-      }
-    })
-    .catch((err) => {
-      // alert('Login Failed', 'Some error occured, please retry');
-      console.log(err);
-    });
+  // fetch(`${baseUrl}/login`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Accept": "application/json",
+  //     "Content-Type": "application/json"
+  //   },
+  //   body: JSON.stringify(userInfo)
+  // })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if (data.msg === 'success') {
+  //       localStorage.setItem("token", data.token)
+  //       dispatch(setUser({ ...data, userId: email }))
+  //     } else {
+  //       // alert('Login Failed', 'Username or Password is incorrect');
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     // alert('Login Failed', 'Some error occured, please retry');
+  //     console.log(err);
+  //   });
 }
 
 //#endregion

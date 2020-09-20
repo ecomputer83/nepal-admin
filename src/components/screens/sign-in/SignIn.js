@@ -1,6 +1,7 @@
 import React from 'react';
 import SignInForm from './SignInForm';
 import { useSelector } from 'react-redux';
+import './SignIn.scss';
 
 const SignIn = () => {
 
@@ -22,11 +23,12 @@ const SignIn = () => {
       </div> */}
 
       {
-        loginReducer.isLoggedIn ?
+        !loginReducer.isLoggedIn ?
           <div className="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
             style={{ background: '#f1f1f1' }}>
             <div className="auth-box row">
-              <div className="col-lg-12 col-md-12 bg-white">
+              <div className="col-sm"></div>
+              <div className="col-sm bg-white">
                 <div className="p-3">
                   <div className="text-center">
                     <img src="assets/images/icon.png" width="350" alt="wrapkit" />
@@ -36,6 +38,7 @@ const SignIn = () => {
                   <SignInForm />
                 </div>
               </div>
+              <div className="col-sm"></div>
             </div>
           </div>
           :

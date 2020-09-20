@@ -1,34 +1,58 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import home from 'assets/icons/home.svg';
+import layers from 'assets/icons/layers.svg';
+import logout from 'assets/icons/logout.svg';
+import creditCard from 'assets/icons/credit-card.svg';
+import info from 'assets/icons/info.svg';
 
 const LeftNav = () => {
   return (
-    <aside className="left-sidebar" data-sidebarbg="skin6">
+    <nav className="left-sidebar" data-sidebarbg="skin6">
       <div className="scroll-sidebar" data-sidebarbg="skin6">
         <nav className="sidebar-nav">
           <ul id="sidebarnav">
-            <li className="sidebar-item"> <Link to="/credit-approval" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="home" className="feather-icon"></i><span
-                className="hide-menu">Credit Approval</span></Link></li>
-            <li className="sidebar-item"> <Link to="/user-management" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="home" className="feather-icon"></i><span
-                className="hide-menu">User Management</span></Link></li>
-            <li className="sidebar-item"> <Link to="/order-management" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="layers" className="feather-icon"></i><span
-                className="hide-menu">Orders</span></Link></li>
-            <li className="sidebar-item"> <Link to="/payment-management" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="credit-card" className="feather-icon"></i><span
-                className="hide-menu">Payments</span></Link></li>
-            <li className="sidebar-item"> <Link to="/news-management" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="info" className="feather-icon"></i><span
-                className="hide-menu">News</span></Link></li>
-            <li className="sidebar-item"> <Link to="/" className="sidebar-link sidebar-link"
-              aria-expanded="false"><i data-feather="log-out" className="feather-icon"></i><span
-                className="hide-menu">Logout</span></Link></li>
+            <li className="sidebar-item">
+              <NavLink to="/credit-approval" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+                aria-expanded="false">
+                <img src={home} className="feather-icon" alt="home" />
+                <span
+                  className="hide-menu">Credit Approval</span></NavLink>
+            </li>
+            <li className="sidebar-item"> <NavLink to="/user-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={home} className="feather-icon" alt="home" />
+              <span
+                className="hide-menu">User Management</span></NavLink></li>
+            <li className="sidebar-item"> <NavLink to="/admin-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={home} className="feather-icon" alt="home" />
+              <span
+                className="hide-menu">Admin Management</span></NavLink></li>
+            <li className="sidebar-item"> <NavLink to="/order-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={layers} className="feather-icon" alt="layers" />
+              <span
+                className="hide-menu">Orders</span></NavLink></li>
+            <li className="sidebar-item"> <NavLink to="/payment-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={creditCard} className="feather-icon" alt="creditCard" />
+              <span
+                className="hide-menu">Payments</span></NavLink></li>
+            <li className="sidebar-item"> <NavLink to="/news-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={info} className="feather-icon" alt="info" />
+              <span
+                className="hide-menu">Articles</span></NavLink></li>
+            <li className="sidebar-item"> <NavLink exact to="/" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+              aria-expanded="false">
+              <img src={logout} className="feather-icon" alt="logout" />
+              <span
+                className="hide-menu">Logout</span></NavLink></li>
           </ul>
         </nav>
       </div>
-    </aside>
+    </nav>
   )
 }
 
