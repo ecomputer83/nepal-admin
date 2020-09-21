@@ -1,7 +1,7 @@
 import React from 'react';
 import LeftNav from 'components/shared/left-nav/LeftNav';
 import HeaderNav from 'components/shared/header-nav/HeaderNav';
-import CreditApproval from 'components/shared/credit-approval/CreditApproval';
+import CreditApproval from 'components/screens/credit-approval/CreditApproval';
 
 const Dashboard = () => {
   return (

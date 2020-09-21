@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import home from 'assets/icons/home.svg';
 import layers from 'assets/icons/layers.svg';
 import logout from 'assets/icons/logout.svg';
@@ -34,12 +34,12 @@ const LeftNav = () => {
               <img src={layers} className="feather-icon" alt="layers" />
               <span
                 className="hide-menu">Orders</span></NavLink></li>
-            <li className="sidebar-item"> <NavLink to="/payment-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+            <li className="sidebar-item"> <NavLink to="/payments" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
               aria-expanded="false">
               <img src={creditCard} className="feather-icon" alt="creditCard" />
               <span
                 className="hide-menu">Payments</span></NavLink></li>
-            <li className="sidebar-item"> <NavLink to="/news-management" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+            <li className="sidebar-item"> <NavLink to="/articles" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
               aria-expanded="false">
               <img src={info} className="feather-icon" alt="info" />
               <span

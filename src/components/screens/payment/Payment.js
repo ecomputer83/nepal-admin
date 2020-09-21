@@ -1,17 +1,21 @@
 import React from 'react';
-import HeaderNav from '../header-nav/HeaderNav';
-import LeftNav from '../left-nav/LeftNav';
+import HeaderNav from '../../shared/header-nav/HeaderNav';
+import LeftNav from '../../shared/left-nav/LeftNav';
+import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
 
-const UserManagement = () => {
+
+const Payment = () => {
   return (
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <HeaderNav />
         <LeftNav />
-        <div className="page-wrapper"  style={{ display: 'block' }}>
+        <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
-            <p>User Management</p>
+            <div className="card">
+              <BreadCrumb title="Payments" />
+            </div>
           </div>
         </div>
       </div>
@@ -19,4 +23,4 @@ const UserManagement = () => {
   )
 }
 
-export default UserManagement;
+export default Payment;

@@ -1,11 +1,10 @@
 import React from 'react';
+import HeaderNav from '../../shared/header-nav/HeaderNav';
+import LeftNav from '../../shared/left-nav/LeftNav';
+import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
 
-import LeftNav from '../left-nav/LeftNav';
-import HeaderNav from '../header-nav/HeaderNav';
-import CreditApprovalItem from './CreditApprovalItem';
 
-
-const CreditApproval = () => {
+const UserManagement = () => {
   return (
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -15,9 +14,7 @@ const CreditApproval = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <div className="card-body">
-                <h4 className="card-title">Credit Approval</h4>
-              </div>
+              <BreadCrumb title="User Management" isAdmin="true"/>
               <div className="table-responsive">
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
@@ -32,12 +29,8 @@ const CreditApproval = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
+
+                    {/* <CreditApprovalItem /> */}
                   </tbody>
                 </table>
               </div>
@@ -49,4 +42,4 @@ const CreditApproval = () => {
   )
 }
 
-export default CreditApproval;
+export default UserManagement;

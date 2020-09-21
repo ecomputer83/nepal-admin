@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import user from 'assets/icons/user.svg';
 import settings from 'assets/icons/settings.svg';
 import logout from 'assets/icons/logout.svg';
