@@ -1,7 +1,7 @@
 import * as t from './actionTypes';
 import history from 'utils/history';
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://localhost:44316';
 
 //#regionAction Creators
 const setUser = (payload) => ({ type: t.SET_USER, payload })
