@@ -33,7 +33,7 @@ const LeftNav = () => {
               aria-expanded="false">
               <img src={layers} className="feather-icon" alt="layers" />
               <span
-                className="hide-menu">Orders</span></NavLink></li>
+                className="hide-menu">Order Management</span></NavLink></li>
             <li className="sidebar-item"> <NavLink to="/payments" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
               aria-expanded="false">
               <img src={creditCard} className="feather-icon" alt="creditCard" />

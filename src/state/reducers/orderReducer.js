@@ -2,16 +2,16 @@ import * as t from '../actions/actionTypes';
 
 
 const defaultState = {
-  creditApprovals: [],
+  orders: [],
   error: null
 }
 
-const creditApprovalReducer = (state = defaultState, action) => {
+const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case t.GET_CREDITAPPROVALS:
+    case t.GET_ORDERS:
       return {
         ...state,
-        creditApprovals: action.payload
+        orders: action.payload
       }
     default:
       return state;
@@ -38,4 +38,4 @@ const creditApprovalReducer = (state = defaultState, action) => {
 //   }
 // }
 
-export default creditApprovalReducer;
+export default orderReducer;

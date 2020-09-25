@@ -3,15 +3,14 @@ import { constants } from 'utils/constants';
 
 const axios = require('axios');
 
-
 const baseUrl = constants.baseUrl;
 const axiosConfig = constants.axiosConfig;
 
 
 //#regionAction Creators
-function getCreditApprovalSuccess(data) {
+function getOrderSuccess(data) {
   return {
-    type: t.GET_CREDITAPPROVALS,
+    type: t.GET_ORDERS,
     payload: data
   }
 }
@@ -20,13 +19,11 @@ function getCreditApprovalSuccess(data) {
 
 //#region 
 
-const getCreditApprovals = () => dispatch => {
+const getOrders = () => dispatch => {
   // TODO: update spinner
-  // dispatch(fetchProductsPending());
-  
-  axios.get(`${baseUrl}/Credit/iPMANCredits`, axiosConfig)
+  axios.get(`${baseUrl}/Credit/BankDeposits`, axiosConfig)
     .then(res => {
-      dispatch(getCreditApprovalSuccess(res.data));
+      dispatch(getOrderSuccess(res.data));
       return res.data;
     })
     .catch(error => {
@@ -37,6 +34,6 @@ const getCreditApprovals = () => dispatch => {
 //#endregion
 
 
-export const creditApprovalActions = {
-  getCreditApprovals
+export const orderActions = {
+  getOrders
 };

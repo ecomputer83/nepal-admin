@@ -1,4 +1,5 @@
 const baseUrl = 'https://nepalog.azurewebsites.net/api';
+
 let axiosConfig = {
   headers: {
     "Content-Type": "application/json",

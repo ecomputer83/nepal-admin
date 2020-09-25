@@ -1,45 +1,30 @@
-import { userService } from 'services/user.service';
 import * as t from './actionTypes';
+import { constants } from 'utils/constants';
 
+const axios = require('axios');
 
+const baseUrl = constants.baseUrl;
+const axiosConfig = constants.axiosConfig;
+
+function getAllUsersSuccess(data) {
+  return {
+    type: t.GET_ALL_USERS,
+    payload: data
+  }
+}
+
+const getAllUsers = () => dispatch => {
+  axios.get(`${baseUrl}/account/allusers`, axiosConfig)
+    .then(res => {
+      dispatch(getAllUsersSuccess(res.data));
+      return res.data;
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
 
 
 export const userActions = {
-  getAllUsers,
-  addUser
+  getAllUsers
 };
-
-function getAllUsers() {
-  return dispatch => {
-    userService.getAllUsers()
-      .then((res) => {
-        dispatch(getUserList(res));
-      }).catch((err) => {
-        console.log(err);
-      })
-  }
-}
-
-function addUser(payload) {
-  return dispatch => {
-    userService.addUser(payload)
-      .then((res) => {
-        dispatch(createUserInfo());
-      })
-  }
-}
-
-export function getUserList(users) {
-  return {
-    type: "GET_ALL_USERS",
-    allUsers: users
-  }
-}
-
-
-export function createUserInfo() {
-  return {
-    type: "USER_CREATED"
-  }
-}
-
