@@ -1,9 +1,9 @@
 import React from 'react';
 import { format } from "date-fns";
 
-const CreditApprovalItem = ({ creditApproval }) => {
+const OrderItem = ({ order }) => {
 
-  var date = new Date(creditApproval.order.orderDate);
+  var date = new Date(order.order.orderDate);
   var orderDate = format(date, 'dd-MM-yyyy');
 
   const approve = () => {
@@ -27,12 +27,11 @@ const CreditApprovalItem = ({ creditApproval }) => {
   return (
     <>
       <tr>
-        <td>{creditApproval.order.user.businessName}</td>
         <td>{orderDate}</td>
-        <td>{creditApproval.order.orderNo}</td>
-        <td>{creditApproval.credit.totalAmount}</td>
-        <td>{creditApproval.credit.name}</td>
-        <td>{creditApproval.credit.reference}</td>
+        <td>{order.order.orderNo}</td>
+        <td>{order.credit.totalAmount}</td>
+        <td>{order.credit.name}</td>
+        <td>{order.credit.reference}</td>
         <td>
           <button onClick={approve} type="button" className="btn btn-success btn-circle" style={{ marginRight: '10px' }}><i className="fa fa-check"></i></button>
           <button onClick={reject} type="button" className="btn btn-danger btn-circle"><i className="fa fa-times"></i></button>
@@ -43,4 +42,4 @@ const CreditApprovalItem = ({ creditApproval }) => {
 }
 
 
-export default CreditApprovalItem;
+export default OrderItem;

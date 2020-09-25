@@ -7,3 +7,7 @@ export const LOG_OUT = "LOG_OUT";
 //#region creditapproval
 export const GET_CREDITAPPROVALS = "GET_CREDITAPPROVALS";
 //#endregion
+
+//#region order
+export const GET_ORDERS = "GET_ORDERS";
+//#endregion

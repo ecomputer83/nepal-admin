@@ -5,6 +5,7 @@ import LeftNav from 'components/shared/left-nav/LeftNav';
 import HeaderNav from 'components/shared/header-nav/HeaderNav';
 import CreditApprovalItem from './CreditApprovalItem';
 import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
+
 import { creditApprovalActions } from 'state/actions/creditApprovalActions';
 
 
@@ -18,7 +19,6 @@ const CreditApproval = () => {
     dispatch(creditApprovalActions.getCreditApprovals())
   }, [dispatch])
 
-  console.log('credit-approvals:', creditApprovals);
 
   const creditApprovalsItems = creditApprovals.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
 
@@ -36,6 +36,7 @@ const CreditApproval = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
+                      <th scope="col">Business Name</th>
                       <th scope="col">Order Date</th>
                       <th scope="col">Order No</th>
                       <th scope="col">Total Amount (#)</th>
