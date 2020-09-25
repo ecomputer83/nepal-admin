@@ -31,9 +31,35 @@ const getOrders = () => dispatch => {
     })
 }
 
+const approveOrder = ({ id }) => dispatch => {
+  // TODO: update spinner
+  axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(orderActions.getOrders())
+      // return res.data;
+    })
+    .catch(error => {
+      // dispatch(fetchProductsError(error));
+    })
+}
+
+const rejectOrder = ({ id }) => dispatch => {
+  // TODO: update spinner
+  axios.get(`${baseUrl}/Credit/reject/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(orderActions.getOrders())
+      // return res.data;
+    })
+    .catch(error => {
+      // dispatch(fetchProductsError(error));
+    })
+}
+
 //#endregion
 
 
 export const orderActions = {
-  getOrders
+  getOrders,
+  approveOrder,
+  rejectOrder
 };

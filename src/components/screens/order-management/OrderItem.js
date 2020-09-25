@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { format } from "date-fns";
 
 import Button from '@material-ui/core/Button';
@@ -7,15 +8,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
+import { orderActions } from "state/actions/orderActions";
+
 const OrderItem = ({ order }) => {
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState('');
+  const [operation, setOperation] = useState('');
 
   var date = new Date(order.order.orderDate);
   var orderDate = format(date, 'dd-MM-yyyy');
 
-
-  const [open, setOpen] = useState(false);
-  const [id, setId] = useState('');
-  const [operation, setOperation] = useState('');
+  const dispatch = useDispatch();
 
   const handleClickOpen = (id, ops) => {
     setId(id);
@@ -29,9 +32,11 @@ const OrderItem = ({ order }) => {
 
 
   const approve = () => {
-    console.log('idd', { id })
-    console.log('idd', { operation })
-    
+    if ({ operation } === 'approve') {
+      dispatch(orderActions.approveOrder({ id }))
+    } else {
+      dispatch(orderActions.rejectOrder({ id }))
+    }
     setOpen(false);
   }
 
