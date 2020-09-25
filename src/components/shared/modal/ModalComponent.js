@@ -1,60 +1,45 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+export default function AlertDialog() {
+  const [open, setOpen] = React.useState(false);
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root')
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-const ModalComponent = () => {
-
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal">
-
-        <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <form>
-          <input />
-        </form>
-      </Modal>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Approve or Reject
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Yes
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
-  )
+  );
 }
-
-
-
-export default ModalComponent;
