@@ -1,31 +1,27 @@
 import * as t from './actionTypes';
 import history from 'utils/history';
 import { constants } from 'utils/constants';
-const axios = require('axios');
 
+
+const axios = require('axios');
 const baseUrl = constants.baseUrl;
+const axiosConfig = constants.axiosConfig;
 
 //#regionAction Creators
 const setUser = (payload) => ({ type: t.SET_USER, payload })
 const logUserOut = () => ({ type: t.LOG_OUT })
 //#endregion
 
-let axiosConfig = {
-  headers: {
-    'Content-Type': 'application/json;',
-    "Accept": "application/json"
-  }
-};
 
 //#region
 const fetchUser = (userInfo) => dispatch => {
   console.log('userInfo', userInfo);
   const { email } = userInfo;
-  axios.post(`${baseUrl}/api/Account/token`, JSON.stringify(userInfo), axiosConfig)
+  axios.post(`${baseUrl}/Account/token`, JSON.stringify(userInfo), axiosConfig)
     .then(data => {
       if (data !== null) {
-        console.log('datadata', data.data.token);
-        dispatch(setUser({ ...data, userId: email }))
+        localStorage.setItem("token", data.data.token)
+        dispatch(setUser(data.data))
         history.push('/credit-approval')
       } else {
         alert('Login Failed', 'Username or Password is incorrect');
@@ -62,17 +58,11 @@ const fetchUser = (userInfo) => dispatch => {
 // }
 
 const autoLogin = () => dispatch => {
-  fetch(`${baseUrl}/auto_login`, {
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
-    }
-  })
+  fetch(`${baseUrl}/auto_login`, axiosConfig)
     .then(res => res.json())
     .then(data => {
-      localStorage.setItem("token", data.token)
-      dispatch(setUser(data.user))
+      localStorage.setItem("token", data.data.token)
+      // dispatch(setUser(data.user))
     })
 }
 

@@ -1,7 +1,8 @@
 import * as t from '../actions/actionTypes';
 
+
 const defaultState = {
-  creditApprovals: {},
+  creditApprovals: [],
   error: null
 }
 
@@ -9,13 +10,17 @@ const creditApprovalReducer = (state = defaultState, action) => {
   switch (action.type) {
     case t.GET_CREDITAPPROVALS:
       return {
-        creditApprovals: { ...action.payload }
+        ...state,
+        creditApprovals: action.payload
       }
     default:
       return state;
   }
 }
 
+
+
+// export const getProducts = state => state.products;
 // const loginReducer = (state = defaultState, action) => {
 //   switch (action.type) {
 //     case t.SET_USER:

@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import LeftNav from '../../shared/left-nav/LeftNav';
-import HeaderNav from '../../shared/header-nav/HeaderNav';
+import LeftNav from 'components/shared/left-nav/LeftNav';
+import HeaderNav from 'components/shared/header-nav/HeaderNav';
 import CreditApprovalItem from './CreditApprovalItem';
-import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
+import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
+import { creditApprovalActions } from 'state/actions/creditApprovalActions';
 
 
 
 const CreditApproval = () => {
+  const dispatch = useDispatch();
+  const cdReducer = useSelector(state => state.creditApprovalReducer);
+  const creditApprovals = cdReducer.creditApprovals;
+
+  useEffect(() => {
+    dispatch(creditApprovalActions.getCreditApprovals())
+  }, [dispatch])
+
+  console.log('credit-approvals:', creditApprovals);
+
+  const creditApprovalsItems = creditApprovals.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
+
   return (
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -22,22 +36,16 @@ const CreditApproval = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th scope="col">Date</th>
+                      <th scope="col">Order Date</th>
                       <th scope="col">Order No</th>
-                      <th scope="col">IP No</th>
-                      <th scope="col">Customer</th>
-                      <th scope="col">Credit Bal</th>
-                      <th scope="col">Order Amount</th>
+                      <th scope="col">Total Amount (#)</th>
+                      <th scope="col">Bank Name</th>
+                      <th scope="col">Teller No</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
-                    <CreditApprovalItem />
+                    {creditApprovalsItems}
                   </tbody>
                 </table>
               </div>
