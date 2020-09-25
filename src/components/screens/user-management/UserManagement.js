@@ -48,6 +48,8 @@ const UserManagement = () => {
                       <th scope="col">Phone Number</th>
                       <th scope="col">Credit Limit</th>
                       <th scope="col"></th>
+                      <th scope="col"></th>
+
                     </tr>
                   </thead>
                   <tbody>
