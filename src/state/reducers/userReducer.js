@@ -1,25 +1,23 @@
 import * as t from '../actions/actionTypes';
 
 const defaultState = {
-  ipManCode: '',
-  bussinessName: '',
-  contactName: '',
-  phoneNumber: '',
-  creditLimit: ''
+  user: {},
+  allUsers: []
 }
 
-const userRducer = (state = defaultState, action) => {
+const userReducer = (state = defaultState, action) => {
   switch (action.type) {
     case t.ADD_USER:
       return {
-        user: {}
-      }
+        user: { ...action.payload }
+      };
     case t.GET_USERS:
       return {
-        user: {}
-      }
+        ...state,
+        allUsers: []
+      };
     default: return state
   }
 }
 
-export default userRducer;
+export default userReducer;

@@ -4,12 +4,12 @@ const baseUrl = 'https://localhost:44316/api';
 
 
 //#regionAction Creators
-// const addUser = (payload) => ({ type: t.ADD_USER, payload })
-// const getUsers = () => ({ type: t.GET_USERS })
+const setAllUsers = (payload) => ({ type: t.SET_ALL_USERS, payload })
+const getUsers = () => ({ type: t.GET_ALL_USERS })
+
 //#endregion
 
 
-//#region
 const addUser = (userInfo) => dispatch => {
   fetch(`${baseUrl}/account/allusers`, {
     method: "POST",
@@ -22,13 +22,30 @@ const addUser = (userInfo) => dispatch => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
+      dispatch(getUsers())
     })
 
+}
+
+const getAllUsers = () => dispatch => {
+  fetch(`${baseUrl}/account/allusers`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setAllUsers({ data }))
+    })
 }
 
 
 
 export const userActions = {
+  getAllUsers,
   addUser
 };
+
