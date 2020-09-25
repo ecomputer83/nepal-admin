@@ -1,49 +1,6 @@
+import { userService } from 'services/user.service';
 import * as t from './actionTypes';
 
-// const baseUrl = 'https://localhost:44316/api';
-const baseUrl = 'https://nepalog.azurewebsites.net/';
-
-
-
-//#regionAction Creators
-const setAllUsers = (payload) => ({ type: t.SET_ALL_USERS, payload })
-const getUsers = () => ({ type: t.GET_ALL_USERS })
-
-//#endregion
-
-
-const addUser = (userInfo) => dispatch => {
-  fetch(`${baseUrl}/account/allusers`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
-    },
-    body: JSON.stringify(userInfo)
-  })
-    .then(res => res.json())
-    .then(data => {
-      dispatch(getUsers())
-    })
-
-}
-
-const getAllUsers = () => dispatch => {
-  fetch(`${baseUrl}/account/allusers`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
-    },
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      dispatch(setAllUsers({ data }))
-    })
-}
 
 
 
@@ -51,4 +8,38 @@ export const userActions = {
   getAllUsers,
   addUser
 };
+
+function getAllUsers() {
+  return dispatch => {
+    userService.getAllUsers()
+      .then((res) => {
+        dispatch(getUserList(res));
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
+}
+
+function addUser(payload) {
+  return dispatch => {
+    userService.addUser(payload)
+      .then((res) => {
+        dispatch(createUserInfo());
+      })
+  }
+}
+
+export function getUserList(users) {
+  return {
+    type: "GET_ALL_USERS",
+    allUsers: users
+  }
+}
+
+
+export function createUserInfo() {
+  return {
+    type: "USER_CREATED"
+  }
+}
 

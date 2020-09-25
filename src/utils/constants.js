@@ -1,8 +1,9 @@
-const baseUrl = 'https://nepalog.azurewebsites.net/';
+const baseUrl = 'https://nepalog.azurewebsites.net/api';
 let axiosConfig = {
   headers: {
-    'Content-Type': 'application/json;',
-    "Accept": "application/json"
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("token")}`
   }
 };
 

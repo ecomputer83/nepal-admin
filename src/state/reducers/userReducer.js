@@ -5,19 +5,15 @@ const defaultState = {
   allUsers: []
 }
 
-const userReducer = (state = defaultState, action) => {
+
+export function user(state = defaultState, action) {
   switch (action.type) {
-    case t.ADD_USER:
-      return {
-        user: { ...action.payload }
-      };
-    case t.GET_USERS:
+    case 'GET_ALL_USERS':
       return {
         ...state,
-        allUsers: []
+        users: action.allUsers
       };
-    default: return state
+    default:
+      return state;
   }
 }
-
-export default userReducer;
