@@ -36,7 +36,7 @@ const OrderManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{padding: '1rem 1rem 1rem 0'}}></th>
+                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
                       <th scope="col">Order Date</th>
                       <th scope="col">Order No</th>
                       <th scope="col">Total Amount (#)</th>
@@ -46,7 +46,7 @@ const OrderManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {orderItems}
+                    {orders.length > 0 ? { orderItems } : <tr><td></td><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>
