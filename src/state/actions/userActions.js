@@ -1,6 +1,6 @@
 import * as t from './actionTypes';
 
-const baseUrl = 'https://nepalog.azurewebsites.net/api';
+const baseUrl = 'https://localhost:44316/api';
 
 
 //#regionAction Creators
@@ -12,6 +12,7 @@ const baseUrl = 'https://nepalog.azurewebsites.net/api';
 //#region
 const addUser = (userInfo) => dispatch => {
   fetch(`${baseUrl}/account/allusers`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
