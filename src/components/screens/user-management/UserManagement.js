@@ -19,7 +19,7 @@ const UserManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th scope="col">Date</th>
+                      <th style={{padding: '1rem 1rem 1rem 3rem'}} scope="col">Date</th>
                       <th scope="col">Order No</th>
                       <th scope="col">IP No</th>
                       <th scope="col">Customer</th>

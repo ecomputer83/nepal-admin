@@ -36,6 +36,7 @@ const OrderManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
+                      <th style={{padding: '1rem 1rem 1rem 0'}}></th>
                       <th scope="col">Order Date</th>
                       <th scope="col">Order No</th>
                       <th scope="col">Total Amount (#)</th>
