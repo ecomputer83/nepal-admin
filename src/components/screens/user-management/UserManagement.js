@@ -14,17 +14,16 @@ const UserManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="User Management" isAdmin="true"/>
+              <BreadCrumb title="User Management" isAdmin="true" />
               <div className="table-responsive">
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Order No</th>
-                      <th scope="col">IP No</th>
-                      <th scope="col">Customer</th>
-                      <th scope="col">Credit Bal</th>
-                      <th scope="col">Order Amount</th>
+                      <th scope="col">IpMan Code</th>
+                      <th scope="col">Business Name</th>
+                      <th scope="col">Contact Name</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">Credit Limit</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
