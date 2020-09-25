@@ -1,8 +1,8 @@
 import * as t from './actionTypes';
 import history from 'utils/history';
 
-const baseUrl = 'http://localhost:55341';
-// const baseUrl = 'https://nepalog.azurewebsites.net/';
+// const baseUrl = 'http://localhost:55341';
+const baseUrl = 'https://nepalog.azurewebsites.net/';
 
 //#regionAction Creators
 const setUser = (payload) => ({ type: t.SET_USER, payload })

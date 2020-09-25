@@ -5,7 +5,6 @@ import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
 import { useSelector } from 'react-redux';
 
 
-
 const UserManagement = () => {
 
   const approve = () => {

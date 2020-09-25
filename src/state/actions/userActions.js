@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 
-const baseUrl = 'https://localhost:44316/api';
+// const baseUrl = 'https://localhost:44316/api';
+const baseUrl = 'https://nepalog.azurewebsites.net/';
+
 
 
 //#regionAction Creators
@@ -38,6 +40,7 @@ const getAllUsers = () => dispatch => {
   })
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       dispatch(setAllUsers({ data }))
     })
 }
