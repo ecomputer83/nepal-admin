@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import user from 'assets/icons/user.svg';
-import settings from 'assets/icons/settings.svg';
 import logout from 'assets/icons/logout.svg';
 import chevronDown from 'assets/icons/chevron-down.svg';
 
-let divider = <div className="dropdown-divider"></div>;
+// let divider = <div className="dropdown-divider"></div>;
 
 
 const UserDisplay = () => {

@@ -38,12 +38,13 @@ const CreditApproval = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 3rem' }} scope="col">Business Name</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }} scope="col"></th>
+                      <th scope="col">IpMan Code</th>
+                      <th scope="col">Business Name</th>
                       <th scope="col">Order Date</th>
                       <th scope="col">Order No</th>
                       <th scope="col">Total Amount (#)</th>
-                      <th scope="col">Bank Name</th>
-                      <th scope="col">Teller No</th>
+                      <th scope="col">Credit Balance</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>

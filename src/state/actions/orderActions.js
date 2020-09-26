@@ -1,12 +1,7 @@
 import * as t from './actionTypes';
-import { constants } from 'utils/constants';
 
 import { orderService } from 'services/order.service';
 
-const axios = require('axios');
-
-const baseUrl = constants.baseUrl;
-const axiosConfig = constants.axiosConfig;
 
 
 //#regionAction Creators

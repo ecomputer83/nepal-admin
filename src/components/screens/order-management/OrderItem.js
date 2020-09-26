@@ -32,7 +32,7 @@ const OrderItem = ({ order }) => {
 
 
   const approve = () => {
-    if ({ operation } === 'approve') {
+    if (operation == 'approve') {
       dispatch(orderActions.approveOrder({ id }))
     } else {
       dispatch(orderActions.rejectOrder({ id }))
