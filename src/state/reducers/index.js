@@ -4,6 +4,7 @@ import creditApprovalReducer from "./creditApprovalReducer";
 import orderReducer from "./orderReducer";
 import userReducer from "./userReducer";
 import articleReducer from "./articleReducer";
+import adminReducer from "./adminReducer";
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   creditApprovalReducer,
   orderReducer,
   userReducer,
-  articleReducer
+  articleReducer,
+  adminReducer
 })
 
 export default rootReducer;

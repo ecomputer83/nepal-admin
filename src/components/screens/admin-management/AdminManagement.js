@@ -1,69 +1,66 @@
-import React from 'react';
+import HeaderNav from 'components/shared/header-nav/HeaderNav';
+import LeftNav from 'components/shared/left-nav/LeftNav';
+import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'components/shared/spinner/Spinner';
+import { adminActions } from 'state/actions/adminActions';
+import AdminItem from './AdminItem';
 
-import LeftNav from '../../shared/left-nav/LeftNav';
-import HeaderNav from '../../shared/header-nav/HeaderNav';
-import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
+
 
 
 const AdminManagement = () => {
+  const dispatch = useDispatch();
+  const reducer = useSelector(state => state.adminReducer);
+  const allAdmin = reducer.allAdmin;
+  const pending = reducer.pending;
+
+
+  useEffect(() => {
+    dispatch(adminActions.getAllAdmin())
+  }, [dispatch])
+
+  const adminItems = allAdmin.map((x) => <AdminItem key={x.id} admin={x} />);
   return (
+
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        {pending ? <Spinner /> : null}
+
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Admin Management" />
-              <div className="row">
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="card">
-                    <div className="card-body">
-                      <form className="mt-4">
-                        <div className="form-group mb-4">
-                          <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Username</label>
-                          <input
-                            className="form-control"
-                            id="username"
-                            type="text"
-                            placeholder="enter username"
-                          // value={email}
-                          // onChange={(e) => setEmail(e.target.value)}
-                          />
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="card">
-                    <div className="card-body">
-                      <form className="mt-4">
-                        <div className="form-group mb-4">
-                          <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Select Role</label>
-                          <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">Administrator</option>
-                            <option value="2">Nepal</option>
-                          </select>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-2 align-self-center">
-                  <div className="customize-input">
-                    <button type="button" className="btn waves-effect waves-light btn-primary">Add User</button>
-                  </div>
-                </div>
+              <BreadCrumb title="Admin Management" isAdmin="true" />
+              <div className="table-responsive">
+                <table className="table table-striped mb-0">
+                  <thead className="bg-primary text-white">
+                    <tr>
+                      {/* <th style={{ padding: '1rem 1rem 1rem 0' }}></th> */}
+                      <th scope="col">Admin Name</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Role</th>
+                      {/* <th scope="col"></th> */}
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {adminItems}
+                  </tbody>
+                </table>
               </div>
-            </ div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
-};
 
-export default AdminManagement
+}
+
+
+export default AdminManagement;

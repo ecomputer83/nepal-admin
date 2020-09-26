@@ -12,3 +12,17 @@ code {
 .submit-btn {
   float: right;
 }
+
+.divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+
+.center-item {
+  text-align: center;
+}
+
+.alert-btn {
+  float: none !important;
+}
