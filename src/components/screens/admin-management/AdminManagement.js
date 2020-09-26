@@ -49,7 +49,7 @@ const AdminManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {adminItems}
+                    {allAdmin.length > 0 ? adminItems : <tr><td>No admin record available</td></tr>}
                   </tbody>
                 </table>
               </div>

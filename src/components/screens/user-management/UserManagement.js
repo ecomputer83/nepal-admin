@@ -50,7 +50,7 @@ const UserManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {userItems}
+                    {users.length > 0 ? userItems : <tr><td>No user record available</td></tr>}
                   </tbody>
                 </table>
               </div>
