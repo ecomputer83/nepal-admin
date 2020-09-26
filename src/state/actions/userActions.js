@@ -99,16 +99,14 @@ const addUser = (payload) => dispatch => {
 
 const deleteUser = (id) => dispatch => {
   dispatch(getUsersPending());
-  // axios.delete(`${constants.baseUrl}/Account/deleteUser`, id, axiosConfig)
-  //   .then(res => {
-  //     dispatch(deleteUserSuccess());
-  //     dispatch(userActions.getAllUsers());
-  //   })
-  //   .catch(error => {
-  //     dispatch(deleteUserError(error));
-  //   })
-
-  console.log(id);
+  axios.delete(`${constants.baseUrl}/Account/deleteUser/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(deleteUserSuccess());
+      dispatch(userActions.getAllUsers());
+    })
+    .catch(error => {
+      dispatch(deleteUserError(error));
+    })
 }
 
 

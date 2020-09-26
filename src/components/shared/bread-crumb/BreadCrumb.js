@@ -22,6 +22,18 @@ const customStyles = {
   }
 };
 
+
+const userStyles = {
+  content: {
+    top: '52%',
+    left: '54%',
+    right: '50%',
+    bottom: 'auto',
+    marginRight: '-59%',
+    transform: 'translate(-50%, -50%)',
+  }
+}
+
 Modal.setAppElement('#root')
 const BreadCrumb = ({ title, isAdmin }) => {
   const dispatch = useDispatch();
@@ -256,7 +268,7 @@ const BreadCrumb = ({ title, isAdmin }) => {
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}
                     onRequestClose={closeModal}
-                    style={customStyles}
+                    style={userStyles}
                     contentLabel="Example Modal">
 
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Add User</h2>
