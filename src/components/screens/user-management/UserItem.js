@@ -17,7 +17,6 @@ const UserItem = ({ user }) => {
     }
 
     dispatch(userActions.addCreditLimit(payload));
-    dispatch(userActions.getAllUsers())
 
   }
 
@@ -32,7 +31,7 @@ const UserItem = ({ user }) => {
         <td style={{ padding: '1rem 1rem 1rem 0' }}>
           <div id="warning-alert-modal" className="modal fade" tabIndex="-1" role="dialog"
             aria-hidden="true">
-            <div className="modal-dialog ">
+            <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 <div className="modal-body">
                   <div className="">

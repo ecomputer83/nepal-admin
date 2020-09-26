@@ -14,9 +14,16 @@ function getAllUsersSuccess(data) {
 }
 
 function addCreditLimitSuccess() {
-  alert('Credit limit was added successfully');
+  alert('Credit limit has been added successfully');
   return {
     type: t.ADD_CREDIT_LIMIT,
+  }
+}
+
+function addUserSuccess() {
+  alert('User has been added successfully');
+  return {
+    type: t.ADD_USER,
   }
 }
 
@@ -42,9 +49,23 @@ const addCreditLimit = (payload) => dispatch => {
     })
 }
 
+const addUser = (payload) => dispatch => {
+  // axios.post(`${constants.baseUrl}/Account/AddCreditLimit`, { payload }, axiosConfig)
+  //   .then(res => {
+  //     dispatch(addUserSuccess());
+  //     dispatch(userActions.getAllUsers())
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+
+  console.log(payload);
+}
+
 
 export const userActions = {
   getAllUsers,
-  addCreditLimit
+  addCreditLimit,
+  addUser
 
 };
