@@ -23,3 +23,13 @@ function addUser(payload) {
       console.log(err);
     })
 }
+
+function addCreditLimit(id, limit) {
+  return axios.get(`${constants.baseUrl}/Account/AddCreditLimit/${id}/${limit}`)
+    .then((res) => {
+      console.log(res);
+      return res;
+    }).catch((err) => {
+      console.log(err);
+    })
+}

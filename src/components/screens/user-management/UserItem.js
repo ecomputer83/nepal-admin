@@ -1,36 +1,71 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'state/actions/userActions';
+
+
 
 const UserItem = ({ user }) => {
+  const dispatch = useDispatch();
 
-  // const approve = () => {
-  //   var r = window.confirm("Are you sure you want to approve the credit request");
-  //   if (r === true) {
-  //     //
-  //   } else {
-  //     //
-  //   }
-  // }
+  const { register, handleSubmit } = useForm();
+  const addLimit = data => {
 
-  // const reject = () => {
-  //   var r = window.confirm("Are you sure you want to reject the credit request",);
-  //   if (r === true) {
-  //     //
-  //   } else {
-  //     //
-  //   }
-  // }
+    const payload = {
+      id: user.id,
+      limit: data.creditLimit
+    }
+
+    dispatch(userActions.addCreditLimit(payload));
+    dispatch(userActions.getAllUsers())
+
+  }
+
+
+
+
+
 
   return (
     <>
       <tr>
+        <td style={{ padding: '1rem 1rem 1rem 0' }}>
+          <div id="warning-alert-modal" className="modal fade" tabIndex="-1" role="dialog"
+            aria-hidden="true">
+            <div className="modal-dialog ">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <div className="">
+                    <i className="dripicons-warning h1 text-warning"></i>
+                    <form className="pl-3 pr-3" >
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="creditLimit">Credit Limit</label>
+                            <input className="form-control" type="text" name="creditLimit" id="creditLimit" ref={register}
+                              required="" placeholder="Enter Credit Limit" />
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" className="btn btn-outline-info submit-btn"
+                        data-dismiss="modal">Cancel</button>
+
+                    </form>
+                    <button type="submit" onClick={handleSubmit(addLimit)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn"
+                      data-dismiss="modal" > Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
         <th scope="row">{user.ipmanCode}</th>
         <td>{user.businessName}</td>
         <td>{user.contactName}</td>
         <td>{user.phoneNumber}</td>
         <td>{user.creditLimit}</td>
         <td>
-          <button type="button" className="btn btn-success btn-circle" style={{ marginRight: '10px' }}><i className="fa fa-check"></i></button>
-          <button type="button" className="btn btn-danger btn-circle"><i className="fa fa-times"></i></button>
+          <button type="button" className="btn btn-success btn-circle" style={{ marginRight: '10px' }} data-toggle="modal" data-target="#warning-alert-modal"><i className="fa fa-plus"></i></button>
         </td>
       </tr>
     </>

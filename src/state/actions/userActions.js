@@ -13,6 +13,13 @@ function getAllUsersSuccess(data) {
   }
 }
 
+function addCreditLimitSuccess() {
+  alert('Credit limit was added successfully');
+  return {
+    type: t.ADD_CREDIT_LIMIT,
+  }
+}
+
 const getAllUsers = () => dispatch => {
   axios.get(`${baseUrl}/account/allusers`, axiosConfig)
     .then(res => {
@@ -24,7 +31,20 @@ const getAllUsers = () => dispatch => {
     })
 }
 
+const addCreditLimit = (payload) => dispatch => {
+  axios.get(`${constants.baseUrl}/Account/AddCreditLimit/${payload.id}/${payload.limit}`, axiosConfig)
+    .then(res => {
+      dispatch(addCreditLimitSuccess());
+      dispatch(userActions.getAllUsers())
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
 
 export const userActions = {
-  getAllUsers
+  getAllUsers,
+  addCreditLimit
+
 };

@@ -2,7 +2,7 @@ import * as t from '../actions/actionTypes';
 
 const defaultState = {
   users: [],
-  error: null
+  error: null,
 }
 
 const userReducer = (state = defaultState, action) => {
@@ -11,6 +11,10 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         users: action.payload
+      }
+    case t.ADD_CREDIT_LIMIT:
+      return {
+        ...state
       }
     default:
       return state;

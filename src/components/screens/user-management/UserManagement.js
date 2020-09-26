@@ -9,8 +9,8 @@ import UserItem from './UserItem';
 
 const UserManagement = () => {
   const dispatch = useDispatch();
-  const oreducer = useSelector(state => state.userReducer);
-  const users = oreducer.users;
+  const reducer = useSelector(state => state.userReducer);
+  const users = reducer.users;
 
   useEffect(() => {
     dispatch(userActions.getAllUsers())
@@ -33,6 +33,7 @@ const UserManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
+                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
                       <th scope="col">IpMan Code</th>
                       <th scope="col">Business Name</th>
                       <th scope="col">Contact Name</th>
