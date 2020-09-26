@@ -35,7 +35,7 @@ const userStyles = {
 }
 
 Modal.setAppElement('#root')
-const BreadCrumb = ({ title, isAdmin }) => {
+const BreadCrumb = ({ title, isAdmin, showBtn }) => {
   const dispatch = useDispatch();
   const reducer = useSelector(state => state.adminReducer);
   const roles = reducer.role;
@@ -133,6 +133,7 @@ const BreadCrumb = ({ title, isAdmin }) => {
           </div>
           {
             isAdmin === "true" ?
+
               <div className="col-5 align-self-center">
                 <div className="customize-input float-right">
                   <button type="button" className="btn wasves-effect waves-light btn-info" onClick={openAdminModal}>Add Admin</button>
@@ -260,7 +261,16 @@ const BreadCrumb = ({ title, isAdmin }) => {
                   </Modal>
                 </div>
               </div>
+
               :
+              null
+
+          }
+
+          {
+            showBtn === "true" ?
+
+
               <div className="col-5 align-self-center">
                 <div className="customize-input float-right">
                   <button type="button" className="btn wasves-effect waves-light btn-info" onClick={openModal}>Add New User</button>
@@ -356,7 +366,10 @@ const BreadCrumb = ({ title, isAdmin }) => {
 
                   </Modal>
                 </div>
-              </div>}
+              </div>
+              :
+              null
+          }
         </div>
       </div>
     </div >

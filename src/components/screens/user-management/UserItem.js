@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'state/actions/userActions';
@@ -8,13 +8,19 @@ import ReactTooltip from "react-tooltip";
 
 
 const UserItem = ({ user }) => {
+
+
   const dispatch = useDispatch();
 
-  const { register, handleSubmit } = useForm();
-  const addLimit = data => {
+  const handleModalOpen = (id) => {
+    localStorage.setItem('userId', id);
+  };
 
+  const { register, handleSubmit } = useForm();
+  const addLimit = (data) => {
+    const userId = localStorage.getItem('userId');
     const payload = {
-      id: user.id,
+      id: userId,
       limit: data.creditLimit
     }
     dispatch(userActions.addCreditLimit(payload));
@@ -22,8 +28,10 @@ const UserItem = ({ user }) => {
   }
 
   const deleteUser = () => {
-    dispatch(userActions.deleteUser(user.id));
+    const userId = localStorage.getItem('userId');
+    dispatch(userActions.deleteUser(userId));
   }
+
 
 
 
@@ -71,7 +79,7 @@ const UserItem = ({ user }) => {
                 <div className="modal-body center-item">
                   <div className="">
                     <i className="dripicons-warning h1 text-warning"></i>
-                    <p>Are you sure you want to delete this user?</p>
+                    <p>Are you sure you want to remove this user?</p>
                     <button type="submit" onClick={handleSubmit(deleteUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
@@ -92,13 +100,13 @@ const UserItem = ({ user }) => {
         <td>
           <button type="button" className="btn btn-success btn-circle" data-tip="Add Credit Limit"
             data-for='toolTip1' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
-            data-target="#add-alert-modal">
+            data-target="#add-alert-modal" onClick={() => handleModalOpen(user.id)}>
             <i className="fa fa-plus">
             </i>
           </button>
           <button type="button" className="btn btn-danger btn-circle" data-tip="Remove User"
             data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
-            data-target="#warning-alert-modal">
+            data-target="#warning-alert-modal" onClick={() => handleModalOpen(user.id)}>
             <i className="fa fa-times">
             </i>
           </button>
