@@ -48,7 +48,7 @@ const CreditApproval = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {creditApprovals.length > 0 ? { creditApprovalItems } : <tr><td>No record available</td></tr>}
+                    {creditApprovals.length > 0 ? creditApprovalItems : <tr><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>

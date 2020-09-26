@@ -25,13 +25,7 @@ const UserDisplay = () => {
           </span>
         </a>
         <div className="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-          <Link to="/" className="dropdown-item">
-            <img src={user} className="svg-icon mr-2 ml-1" alt="user" />
-          My Profile</Link>
-          <Link to="/" className="dropdown-item">
-            <img src={settings} className="svg-icon mr-2 ml-1" alt="settings" />
-            Account Setting</Link>
-          {divider}
+          {/* {divider} */}
           <Link to="/log-out" className="dropdown-item">
             <img src={logout} className="svg-icon mr-2 ml-1" alt="logout" />
             Logout</Link>

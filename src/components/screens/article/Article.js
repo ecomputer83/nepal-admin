@@ -46,7 +46,7 @@ const Articles = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {articles.length > 0 ? { articleItems } : <tr><td>No record available</td></tr>}
+                  {articles.length > 0 ? articleItems : <tr><td>No record available</td></tr>}
                 </tbody>
               </table>
             </div>
