@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
 
+import { orderService } from 'services/order.service';
+
 const axios = require('axios');
 
 const baseUrl = constants.baseUrl;
@@ -34,7 +36,7 @@ const getOrderError = (error) => {
 
 const getOrders = () => dispatch => {
   dispatch(getOrderPending());
-  axios.get(`${baseUrl}/Credit/BankDeposits`, axiosConfig)
+  orderService.getAllOrders()
     .then(res => {
       dispatch(getOrderSuccess(res.data));
       return res.data;
@@ -46,7 +48,7 @@ const getOrders = () => dispatch => {
 
 const approveOrder = ({ id }) => dispatch => {
   dispatch(getOrderPending());
-  axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
+  orderService.approveOrder(id)
     .then(res => {
       dispatch(orderActions.getOrders())
       // return res.data;
@@ -58,7 +60,7 @@ const approveOrder = ({ id }) => dispatch => {
 
 const rejectOrder = ({ id }) => dispatch => {
   dispatch(getOrderPending());
-  axios.get(`${baseUrl}/Credit/reject/${id}`, axiosConfig)
+  orderService.rejectOrder(id)
     .then(res => {
       dispatch(orderActions.getOrders())
       // return res.data;
