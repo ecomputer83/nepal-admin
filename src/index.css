@@ -26,3 +26,7 @@ code {
 .alert-btn {
   float: none !important;
 }
+
+.error {
+  color: #f26868;
+}

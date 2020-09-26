@@ -16,7 +16,9 @@ const UserItem = ({ user }) => {
     localStorage.setItem('userId', id);
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors, formState } = useForm({
+    mode: "onChange"
+  });
   const addLimit = (data) => {
     const userId = localStorage.getItem('userId');
     const payload = {
@@ -55,8 +57,12 @@ const UserItem = ({ user }) => {
                         <div className="col-md-12">
                           <div className="form-group">
                             <label htmlFor="creditLimit">Add Credit Limit</label>
-                            <input className="form-control" type="text" name="creditLimit" id="creditLimit" ref={register}
+                            <input className="form-control" type="number" name="creditLimit" id="creditLimit" ref={register({
+                              required: "Credit limit is required",
+                            })}
                               required="" placeholder="Enter Credit Limit" />
+                            {errors.creditLimit && <p className="error">{errors.creditLimit.message}</p>}
+
                           </div>
                         </div>
                       </div>
@@ -65,7 +71,7 @@ const UserItem = ({ user }) => {
 
                     </form>
                     <button type="submit" onClick={handleSubmit(addLimit)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn"
-                      data-dismiss="modal" > Submit</button>
+                      data-dismiss="modal" disabled={!formState.isValid} > Submit</button>
                   </div>
                 </div>
               </div>
