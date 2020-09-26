@@ -1,7 +1,7 @@
 import React from 'react';
-import HeaderNav from '../../shared/header-nav/HeaderNav';
-import LeftNav from '../../shared/left-nav/LeftNav';
-import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
+import HeaderNav from 'components/shared/header-nav/HeaderNav';
+import LeftNav from 'components/shared/left-nav/LeftNav';
+import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
 
 
 const UserManagement = () => {

@@ -3,15 +3,28 @@ import * as t from '../actions/actionTypes';
 
 const defaultState = {
   creditApprovals: [],
-  error: null
+  error: null,
+  pending: false
 }
 
 const creditApprovalReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case t.GET_CREDITAPPROVALS:
+    case t.GET_CREDITAPPROVALS_SUCCESS:
       return {
         ...state,
+        pending: false,
         creditApprovals: action.payload
+      }
+    case t.GET_CREDITAPPROVALS_PENDING:
+      return {
+        ...state,
+        pending: true
+      }
+    case t.GET_CREDITAPPROVALS_ERROR:
+      return {
+        ...state,
+        pending: false,
+        error: action.error
       }
     default:
       return state;

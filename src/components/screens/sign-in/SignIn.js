@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import SignInForm from './SignInForm';
 import './SignIn.scss';
+import SignInForm from './SignInForm';
+import Spinner from 'components/shared/spinner/Spinner';
 
 import { loginActions } from 'state/actions/loginActions'
 
@@ -19,13 +20,7 @@ const SignIn = () => {
 
   return (
     <div className="main-wrapper">
-      {/* <div className="preloader">
-        <div className="lds-ripple">
-          <div className="lds-pos"></div>
-          <div className="lds-pos"></div>
-        </div>
-      </div> */}
-
+      <Spinner />
       {
         !loginReducer.isLoggedIn ?
           <div className="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"

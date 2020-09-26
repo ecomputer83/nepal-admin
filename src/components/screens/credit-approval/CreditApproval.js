@@ -7,25 +7,27 @@ import CreditApprovalItem from './CreditApprovalItem';
 import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
 
 import { creditApprovalActions } from 'state/actions/creditApprovalActions';
-
+import Spinner from 'components/shared/spinner/Spinner';
 
 
 const CreditApproval = () => {
   const dispatch = useDispatch();
   const cdReducer = useSelector(state => state.creditApprovalReducer);
   const creditApprovals = cdReducer.creditApprovals;
+  const pending = cdReducer.pending;
 
   useEffect(() => {
     dispatch(creditApprovalActions.getCreditApprovals())
   }, [dispatch])
 
 
-  const creditApprovalsItems = creditApprovals.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
+  const creditApprovalItems = creditApprovals.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
 
   return (
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        {pending ? <Spinner /> : null}
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
@@ -46,7 +48,7 @@ const CreditApproval = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {creditApprovals.length > 0 ? { creditApprovalsItems } : <tr><td>No record available</td></tr>}
+                    {creditApprovals.length > 0 ? { creditApprovalItems } : <tr><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>

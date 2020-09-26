@@ -7,6 +7,7 @@ import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
 import OrderItem from './OrderItem';
 
 import { orderActions } from 'state/actions/orderActions';
+import Spinner from 'components/shared/spinner/Spinner';
 
 
 const OrderManagement = () => {
@@ -14,6 +15,7 @@ const OrderManagement = () => {
   const dispatch = useDispatch();
   const oReducer = useSelector(state => state.orderReducer);
   const orders = oReducer.orders;
+  const pending = oReducer.pending;
 
   useEffect(() => {
     dispatch(orderActions.getOrders())
@@ -26,6 +28,7 @@ const OrderManagement = () => {
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        {pending ? <Spinner /> : null}
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>

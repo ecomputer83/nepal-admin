@@ -9,10 +9,23 @@ const axiosConfig = constants.axiosConfig;
 
 
 //#regionAction Creators
-function getCreditApprovalSuccess(data) {
+const getCreditApprovalSuccess = (data) => {
   return {
-    type: t.GET_CREDITAPPROVALS,
+    type: t.GET_CREDITAPPROVALS_SUCCESS,
     payload: data
+  }
+}
+
+const getCreditApprovalPending = (data) => {
+  return {
+    type: t.GET_CREDITAPPROVALS_PENDING
+  }
+}
+
+const getCreditApprovalError = (error) => {
+  return {
+    type: t.GET_CREDITAPPROVALS_ERROR,
+    error
   }
 }
 //#endregion
@@ -21,16 +34,14 @@ function getCreditApprovalSuccess(data) {
 //#region 
 
 const getCreditApprovals = () => dispatch => {
-  // TODO: update spinner
-  // dispatch(fetchProductsPending());
-  
+  dispatch(getCreditApprovalPending());
   axios.get(`${baseUrl}/Credit/iPMANCredits`, axiosConfig)
     .then(res => {
       dispatch(getCreditApprovalSuccess(res.data));
       return res.data;
     })
     .catch(error => {
-      // dispatch(fetchProductsError(error));
+      dispatch(getCreditApprovalError(error));
     })
 }
 
