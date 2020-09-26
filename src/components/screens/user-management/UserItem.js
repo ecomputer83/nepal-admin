@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'state/actions/userActions';
+import ReactTooltip from "react-tooltip";
+
 
 
 
@@ -40,7 +42,7 @@ const UserItem = ({ user }) => {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="form-group">
-                            <label htmlFor="creditLimit">Credit Limit</label>
+                            <label htmlFor="creditLimit">Add Credit Limit</label>
                             <input className="form-control" type="text" name="creditLimit" id="creditLimit" ref={register}
                               required="" placeholder="Enter Credit Limit" />
                           </div>
@@ -64,7 +66,14 @@ const UserItem = ({ user }) => {
         <td>{user.phoneNumber}</td>
         <td>{user.creditLimit}</td>
         <td>
-          <button type="button" className="btn btn-success btn-circle" style={{ marginRight: '10px' }} data-toggle="modal" data-target="#warning-alert-modal"><i className="fa fa-plus"></i></button>
+          <button type="button" className="btn btn-success btn-circle" data-tip="Add Credit Limit"
+            data-for='toolTip1' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
+            data-target="#warning-alert-modal">
+            <i className="fa fa-plus">
+            </i>
+          </button>
+          <ReactTooltip id="toolTip1" />
+
         </td>
       </tr>
     </>
