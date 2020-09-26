@@ -275,14 +275,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
                             {errors.role && <p className="error">{errors.role.message}</p>}
                           </div>
                         </div>
-
-
                       </div>
-
-
-
-
-
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
                           <button className="btn btn-primary" disabled={!formState.isValid} onClick={handleSubmit(addRole)} style={{ marginRight: '20px' }} type="submit">Add Role</button>
@@ -409,23 +402,14 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
                             {errors.phoneNumber && <p className="error">{errors.phoneNumber.message}</p>}
                           </div>
                         </div>
-
-
                       </div>
-
-
-
-
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
                           <button className="btn btn-primary" disabled={!formState.isValid} onClick={handleSubmit(addUser)} style={{ marginRight: '20px' }} type="submit">Add User</button>
                           <button className="btn btn-danger" type="submit">Cancel</button>
                         </div>
                       </div>
-
                     </form>
-
-
                   </Modal>
                 </div>
               </div>
