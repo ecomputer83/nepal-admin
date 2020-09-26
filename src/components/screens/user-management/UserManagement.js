@@ -1,6 +1,6 @@
-import HeaderNav from '../../shared/header-nav/HeaderNav';
-import LeftNav from '../../shared/left-nav/LeftNav';
-import BreadCrumb from '../../shared/bread-crumb/BreadCrumb';
+import HeaderNav from 'components/shared/header-nav/HeaderNav';
+import LeftNav from 'components/shared/left-nav/LeftNav';
+import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'state/actions/userActions';
@@ -17,6 +17,7 @@ const UserManagement = () => {
   }, [dispatch])
 
   const userItems = users.map((x) => <UserItem key={x.id} user={x} />);
+  console.log(users);
 
   return (
 

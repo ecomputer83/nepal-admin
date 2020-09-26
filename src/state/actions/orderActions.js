@@ -8,10 +8,23 @@ const axiosConfig = constants.axiosConfig;
 
 
 //#regionAction Creators
-function getOrderSuccess(data) {
+const getOrderSuccess = (payload) => {
   return {
-    type: t.GET_ORDERS,
-    payload: data
+    type: t.GET_ORDERS_SUCCESS,
+    payload
+  }
+}
+
+const getOrderPending = () => {
+  return {
+    type: t.GET_ORDERS_PENDING
+  }
+}
+
+const getOrderError = (error) => {
+  return {
+    type: t.GET_ORDERS_ERROR,
+    error
   }
 }
 //#endregion
@@ -20,14 +33,38 @@ function getOrderSuccess(data) {
 //#region 
 
 const getOrders = () => dispatch => {
-  // TODO: update spinner
+  dispatch(getOrderPending());
   axios.get(`${baseUrl}/Credit/BankDeposits`, axiosConfig)
     .then(res => {
       dispatch(getOrderSuccess(res.data));
       return res.data;
     })
     .catch(error => {
-      // dispatch(fetchProductsError(error));
+      dispatch(getOrderError(error));
+    })
+}
+
+const approveOrder = ({ id }) => dispatch => {
+  dispatch(getOrderPending());
+  axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(orderActions.getOrders())
+      // return res.data;
+    })
+    .catch(error => {
+      dispatch(getOrderError(error));
+    })
+}
+
+const rejectOrder = ({ id }) => dispatch => {
+  dispatch(getOrderPending());
+  axios.get(`${baseUrl}/Credit/reject/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(orderActions.getOrders())
+      // return res.data;
+    })
+    .catch(error => {
+      dispatch(getOrderError(error));
     })
 }
 
@@ -35,5 +72,7 @@ const getOrders = () => dispatch => {
 
 
 export const orderActions = {
-  getOrders
+  getOrders,
+  approveOrder,
+  rejectOrder
 };

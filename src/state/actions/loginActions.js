@@ -15,15 +15,12 @@ const logUserOut = () => ({ type: t.LOG_OUT })
 
 
 //#region
-const fetchUser = (userInfo) => dispatch => {
-  console.log('userInfo', userInfo);
-  const { email } = userInfo;
+const fetchUserToken = (userInfo) => dispatch => {
   axios.post(`${baseUrl}/Account/token`, JSON.stringify(userInfo), axiosConfig)
     .then(data => {
       if (data !== null) {
-        localStorage.setItem("token", data.data.token)
-        dispatch(setUser(data.data))
-        history.push('/credit-approval')
+        localStorage.setItem("nepal-token", data.data.token)
+        dispatch(getUser())
       } else {
         alert('Login Failed', 'Username or Password is incorrect');
       }
@@ -34,41 +31,51 @@ const fetchUser = (userInfo) => dispatch => {
     });
 }
 
-//#endregion
 
-
-// export const signUserUp = (userInfo) => dispatch => {
-//   fetch(`http://localhost:4000/users`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Accept": "application/json"
-//     },
-//     body: JSON.stringify(userInfo)
-//   })
-//     .then(res => res.json())
-//     .then(data => {
-//       // data sent back will in the format of
-//       // {
-//       //     user: {},
-//       //.    token: "aaaaa.bbbbb.bbbbb"
-//       // }
-//       localStorage.setItem("token", data.token)
-//       dispatch(setUser(data.user))
-//     })
-// }
-
-const autoLogin = () => dispatch => {
-  fetch(`${baseUrl}/auto_login`, axiosConfig)
-    .then(res => res.json())
+const getUser = () => dispatch => {
+  axiosConfig['headers'].Authorization = `Bearer ${localStorage.getItem("nepal-token")}`;
+  axios.get(`${baseUrl}/Account/user`, axiosConfig)
     .then(data => {
-      localStorage.setItem("token", data.data.token)
-      // dispatch(setUser(data.user))
+      if (data !== null) {
+        localStorage.setItem("nepal-user", data.data.userName);
+        dispatch(setUser(data.data))
+        if (data.data.isIPMAN) {
+          history.push('/user-management')
+        } else {
+          history.push('/credit-approval')
+        }
+      } else {
+        alert('Login Failed', 'Username or Password is incorrect');
+      }
     })
+    .catch((err) => {
+      if (err.toString().includes("401")) {
+        console.log("unAuthorized", err);
+      }
+      console.log("loginAction : getUser", err);
+    });
 }
 
-export const authActions = {
+
+const autoLogin = () => dispatch => {
+  const authToken = localStorage.getItem("nepal-token");
+  if (authToken) {
+    dispatch(getUser());
+  }
+}
+
+const logOut = () => dispatch => {
+  localStorage.removeItem('nepal-user');
+  localStorage.removeItem('nepal-token');
+  history.push('/');
+
+}
+//#endregion
+
+export const loginActions = {
   logUserOut,
-  fetchUser,
-  autoLogin
+  fetchUserToken,
+  getUser,
+  autoLogin,
+  logOut
 };

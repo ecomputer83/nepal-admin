@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import home from 'assets/icons/home.svg';
 import layers from 'assets/icons/layers.svg';
 import logout from 'assets/icons/logout.svg';
@@ -7,6 +8,7 @@ import creditCard from 'assets/icons/credit-card.svg';
 import info from 'assets/icons/info.svg';
 
 const LeftNav = () => {
+
   return (
     <nav className="left-sidebar" data-sidebarbg="skin6">
       <div className="scroll-sidebar" data-sidebarbg="skin6">
@@ -44,11 +46,11 @@ const LeftNav = () => {
               <img src={info} className="feather-icon" alt="info" />
               <span
                 className="hide-menu">Articles</span></NavLink></li>
-            <li className="sidebar-item"> <NavLink exact to="/" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
+            <li className="sidebar-item"> <NavLink exact to="/log-out" activeClassName="navbar__link--active" className="sidebar-link sidebar-link"
               aria-expanded="false">
               <img src={logout} className="feather-icon" alt="logout" />
-              <span
-                className="hide-menu">Logout</span></NavLink></li>
+              <span className="hide-menu">Logout</span></NavLink>
+            </li>
           </ul>
         </nav>
       </div>
