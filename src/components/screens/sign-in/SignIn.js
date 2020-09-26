@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import SignInForm from './SignInForm';
-import { useSelector } from 'react-redux';
 import './SignIn.scss';
+
+import { loginActions } from 'state/actions/loginActions'
 
 const SignIn = () => {
 
   const loginReducer = useSelector(state => state.loginReducer);
-  // const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(authActions.autoLogin())
-  // }, [dispatch])
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loginActions.autoLogin())
+  }, [dispatch])
 
 
   return (
@@ -44,7 +48,7 @@ const SignIn = () => {
           :
           <div className="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
             style={{ background: '#f1f1f1' }}>
-            <h1>Welcome, {loginReducer.user.username}</h1>
+            <h1>Welcome, {loginReducer.user.contactName}</h1>
           </div>
       }
     </div>

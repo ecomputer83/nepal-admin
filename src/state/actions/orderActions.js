@@ -8,10 +8,10 @@ const axiosConfig = constants.axiosConfig;
 
 
 //#regionAction Creators
-function getOrderSuccess(data) {
+const getOrderSuccess = (payload) => {
   return {
     type: t.GET_ORDERS,
-    payload: data
+    payload
   }
 }
 //#endregion

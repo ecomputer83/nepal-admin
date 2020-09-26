@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { authActions } from 'state/actions/loginActions';
+import { loginActions } from 'state/actions/loginActions';
 
 
 const SignInForm = () => {
@@ -21,7 +21,7 @@ const SignInForm = () => {
     }
 
     if (email && password) {
-      dispatch(authActions.fetchUser({ 'email': email, 'password': password }));
+      dispatch(loginActions.fetchUserToken({ 'email': email, 'password': password }));
     }
   }
 

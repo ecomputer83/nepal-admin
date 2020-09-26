@@ -5,22 +5,34 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-export default function AlertDialog() {
-  const [open, setOpen] = React.useState(false);
+const ModalComponent = (props) => {
+  console.log('propsprops', props)
+  return
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const approve = () => {
+  //   if ({ operation } === 'approve') {
+  //     dispatch(orderActions.approveOrder({ id }))
+  //   } else {
+  //     dispatch(orderActions.rejectOrder({ id }))
+  //   }
+  //   setOpen(false);
+  // }
+
+  // const reject = () => {
+  //   setOpen(false);
+  // }
+
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-      </Button>
-      <Dialog
+    <>
+      {/* <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -28,18 +40,20 @@ export default function AlertDialog() {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Approve or Reject
+            Are you sure you want to {operation}?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={approve} color="primary" autoFocus>
             Yes
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={reject} color="primary">
             No
           </Button>
         </DialogActions>
-      </Dialog>
-    </div>
+      </Dialog> */}
+    </>
   );
 }
+
+export default ModalComponent;
