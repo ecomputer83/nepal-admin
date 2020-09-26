@@ -38,7 +38,7 @@ const CreditApproval = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 3rem' }} scope="col"></th>
+                      <th style={{ padding: '1rem 1rem 1rem 0rem' }} scope="col"></th>
                       <th scope="col">IpMan Code</th>
                       <th scope="col">Business Name</th>
                       <th scope="col">Order Date</th>

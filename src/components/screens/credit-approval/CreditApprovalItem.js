@@ -32,7 +32,7 @@ const CreditApprovalItem = ({ creditApproval }) => {
 
 
   const approve = () => {
-    if (operation == "approve") {
+    if (operation === "approve") {
       dispatch(creditApprovalActions.approveCreditOrder({ id }))
     } else {
       dispatch(creditApprovalActions.rejectCreditOrder({ id }))

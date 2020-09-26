@@ -38,6 +38,7 @@ const getUser = () => dispatch => {
     .then(data => {
       if (data !== null) {
         localStorage.setItem("nepal-user", data.data.userName);
+        localStorage.setItem("isIPMAN", data.data.isIPMAN);
         dispatch(setUser(data.data))
         if (data.data.isIPMAN) {
           history.push('/user-management')
@@ -67,6 +68,7 @@ const autoLogin = () => dispatch => {
 const logOut = () => dispatch => {
   localStorage.removeItem('nepal-user');
   localStorage.removeItem('nepal-token');
+  localStorage.removeItem('isIPMAN');
   history.push('/');
 
 }

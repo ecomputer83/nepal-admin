@@ -5,6 +5,7 @@ import orderReducer from "./orderReducer";
 import userReducer from "./userReducer";
 import articleReducer from "./articleReducer";
 import adminReducer from "./adminReducer";
+import paymentReducer from "./paymentReducer";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   orderReducer,
   userReducer,
   articleReducer,
-  adminReducer
+  adminReducer,
+  paymentReducer
 })
 
 export default rootReducer;

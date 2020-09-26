@@ -8,15 +8,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-import { orderActions } from "state/actions/orderActions";
+import { paymentActions } from "state/actions/paymentActions";
 
-const OrderItem = ({ order }) => {
+const PaymentItem = ({ payment }) => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
   const [operation, setOperation] = useState('');
 
-  var date = new Date(order.order.orderDate);
-  var orderDate = format(date, 'dd-MM-yyyy');
+  var date = new Date(payment.order.orderDate);
+  var paymentDate = format(date, 'dd-MM-yyyy');
 
   const dispatch = useDispatch();
 
@@ -33,9 +33,9 @@ const OrderItem = ({ order }) => {
 
   const approve = () => {
     if (operation === 'approve') {
-      dispatch(orderActions.approveOrder({ id }))
+      dispatch(paymentActions.approvePayment({ id }))
     } else {
-      dispatch(orderActions.rejectOrder({ id }))
+      dispatch(paymentActions.rejectPayment({ id }))
     }
     setOpen(false);
   }
@@ -71,14 +71,14 @@ const OrderItem = ({ order }) => {
             </DialogActions>
           </Dialog>
         </td>
-        <td>{orderDate}</td>
-        <td>{order.order.orderNo}</td>
-        <td>{order.credit.totalAmount}</td>
-        <td>{order.credit.name}</td>
-        <td>{order.credit.reference}</td>
+        <td>{paymentDate}</td>
+        <td>{payment.order.orderNo}</td>
+        <td>{payment.credit.totalAmount}</td>
+        <td>{payment.credit.name}</td>
+        <td>{payment.credit.reference}</td>
         <td>
-          <button type="button" onClick={() => handleClickOpen(order.id, 'approve')} className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-check"></i></button>
-          <button type="button" onClick={() => handleClickOpen(order.id, 'reject')} className="btn btn-danger btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-times"></i></button>
+          <button type="button" onClick={() => handleClickOpen(payment.id, 'approve')} className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-check"></i></button>
+          <button type="button" onClick={() => handleClickOpen(payment.id, 'reject')} className="btn btn-danger btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-times"></i></button>
         </td>
       </tr >
     </>
@@ -86,4 +86,4 @@ const OrderItem = ({ order }) => {
 }
 
 
-export default OrderItem;
+export default PaymentItem;
