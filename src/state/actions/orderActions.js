@@ -29,9 +29,9 @@ const getOrderError = (error) => {
 
 //#region 
 
-const getOrders = () => dispatch => {
+const getAllOrders = () => async dispatch => {
   dispatch(getOrderPending());
-  orderService.getAllOrders()
+  await orderService.getAllOrders()
     .then(res => {
       dispatch(getOrderSuccess(res.data));
       return res.data;
@@ -41,9 +41,9 @@ const getOrders = () => dispatch => {
     })
 }
 
-const markAsComplete = ({ id }) => dispatch => {
+const markAsComplete = ({ id }) => async dispatch => {
   dispatch(getOrderPending());
-  orderService.markAsComplete(id)
+  await orderService.markAsComplete(id)
     .then(res => {
       dispatch(orderActions.getOrders())
       // return res.data;
@@ -53,15 +53,18 @@ const markAsComplete = ({ id }) => dispatch => {
     })
 }
 
-const rejectOrder = ({ id }) => dispatch => {
-  dispatch(getOrderPending());
-  orderService.rejectOrder(id)
+const getOrder = ({ id }) => async dispatch => {
+  // dispatch(getOrderPending());
+  await orderService.getOrder(id)
     .then(res => {
-      dispatch(orderActions.getOrders())
+      console.log('getOrder', res);
+      // dispatch(getOrderPending());
+      return res
       // return res.data;
     })
     .catch(error => {
-      dispatch(getOrderError(error));
+      console.log('getOrder', error);
+      // dispatch(getOrderPending());
     })
 }
 
@@ -69,7 +72,7 @@ const rejectOrder = ({ id }) => dispatch => {
 
 
 export const orderActions = {
-  getOrders,
+  getAllOrders,
   markAsComplete,
-  rejectOrder
+  getOrder
 };

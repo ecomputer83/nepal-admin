@@ -13,8 +13,8 @@ const getAllOrders = () => {
     })
 }
 
-const markAsComplete = (id) => {
-  return axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
+const getOrder = (id) => {
+  return axios.get(`${baseUrl}/Order/${id}`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {
@@ -22,8 +22,8 @@ const markAsComplete = (id) => {
     })
 }
 
-const rejectOrder = (id) => {
-  return axios.get(`${baseUrl}/Credit/reject/${id}`, axiosConfig)
+const markAsComplete = (id) => {
+  return axios.get(`${baseUrl}/Order/completeorder/${id}`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {
@@ -34,5 +34,5 @@ const rejectOrder = (id) => {
 export const orderService = {
   getAllOrders,
   markAsComplete,
-  rejectOrder
+  getOrder
 };

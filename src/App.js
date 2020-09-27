@@ -3,7 +3,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { store } from 'state/store';
 import RouterComponent from './RouterComponent';
-import history from 'utils/history';
+// import history from 'utils/history';
 // import { BrowserRouter as Router } from 'react-router-dom'
 
 

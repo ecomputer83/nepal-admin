@@ -2,8 +2,8 @@ import * as t from './actionTypes';
 import history from 'utils/history';
 import { constants } from 'utils/constants';
 
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+// import React from 'react';
+// import { Redirect } from 'react-router-dom';
 
 const axios = require('axios');
 const baseUrl = constants.baseUrl;
