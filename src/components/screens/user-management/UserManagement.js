@@ -37,13 +37,13 @@ const UserManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col">IpMan Code</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }}>IpMAN Code</th>
                       <th scope="col">Business Name</th>
                       <th scope="col">Contact Name</th>
                       <th scope="col">Phone Number</th>
                       <th scope="col">Email</th>
                       <th scope="col">Credit Limit</th>
+                      <th scope="col"></th>
                       <th scope="col"></th>
 
                     </tr>

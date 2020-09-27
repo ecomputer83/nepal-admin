@@ -44,6 +44,31 @@ const UserItem = ({ user }) => {
   return (
     <>
       <tr>
+
+        <th scope="row" style={{ padding: '1rem 1rem 1rem 3rem' }}>{user.ipmanCode}</th>
+        <td>{user.businessName}</td>
+        <td>{user.contactName}</td>
+        <td>{user.phoneNumber}</td>
+        <td>{user.email}</td>
+        <td>{user.creditLimit}</td>
+        <td>
+          <button type="button" className="btn btn-success btn-circle" data-tip="Add Credit Limit"
+            data-for='toolTip1' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
+            data-target="#add-alert-modal" onClick={() => handleModalOpen(user.id)}>
+            <i className="fa fa-plus">
+            </i>
+          </button>
+          <button type="button" className="btn btn-danger btn-circle" data-tip="Remove User"
+            data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
+            data-target="#warning-alert-modal" onClick={() => handleModalOpen(user.id)}>
+            <i className="fa fa-times">
+            </i>
+          </button>
+          <ReactTooltip id="toolTip1" />
+          <ReactTooltip id="toolTip2" />
+
+
+        </td>
         <td style={{ padding: '1rem 1rem 1rem 0' }}>
           <div id="add-alert-modal" className="modal fade" tabIndex="-1" role="dialog"
             aria-hidden="true">
@@ -96,30 +121,6 @@ const UserItem = ({ user }) => {
               </div>
             </div>
           </div>
-        </td>
-        <th scope="row">{user.ipmanCode}</th>
-        <td>{user.businessName}</td>
-        <td>{user.contactName}</td>
-        <td>{user.phoneNumber}</td>
-        <td>{user.email}</td>
-        <td>{user.creditLimit}</td>
-        <td>
-          <button type="button" className="btn btn-success btn-circle" data-tip="Add Credit Limit"
-            data-for='toolTip1' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
-            data-target="#add-alert-modal" onClick={() => handleModalOpen(user.id)}>
-            <i className="fa fa-plus">
-            </i>
-          </button>
-          <button type="button" className="btn btn-danger btn-circle" data-tip="Remove User"
-            data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
-            data-target="#warning-alert-modal" onClick={() => handleModalOpen(user.id)}>
-            <i className="fa fa-times">
-            </i>
-          </button>
-          <ReactTooltip id="toolTip1" />
-          <ReactTooltip id="toolTip2" />
-
-
         </td>
       </tr>
     </>

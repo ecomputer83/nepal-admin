@@ -38,12 +38,11 @@ const AdminManagement = () => {
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      {/* <th style={{ padding: '1rem 1rem 1rem 0' }}></th> */}
-                      <th scope="col">Admin Name</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }}>Admin Name</th>
                       <th scope="col">Phone Number</th>
                       <th scope="col">Email</th>
                       <th scope="col">Role</th>
-                      {/* <th scope="col"></th> */}
+                      <th scope="col"></th>
 
                     </tr>
                   </thead>

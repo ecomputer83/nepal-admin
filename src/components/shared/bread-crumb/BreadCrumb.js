@@ -141,7 +141,6 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
 
 
   const [picture, setPicture] = useState(null);
-  const [imgData, setImgData] = useState(null);
 
   const addArticle = (data) => {
     data.imageFile = picture

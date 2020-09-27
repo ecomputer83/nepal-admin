@@ -10,7 +10,6 @@ import { articleActions } from 'state/actions/articleActions';
 const ArticleItem = ({ article }) => {
 
   const [picture, setPicture] = useState(null);
-  const [imgData, setImgData] = useState(null);
   const dispatch = useDispatch();
   const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: "onChange"
@@ -27,6 +26,7 @@ const ArticleItem = ({ article }) => {
 
   const updateArticle = (data, e) => {
     const id = newArticle.id;
+    data.imageFile = picture;
     dispatch(articleActions.updateArticle(id, data));
     reset();
   }
@@ -49,18 +49,38 @@ const ArticleItem = ({ article }) => {
     e.preventDefault()
     if (e.target.files[0]) {
       setPicture(e.target.files[0]);
-      const reader = new FileReader();
+      // const reader = new FileReader();
 
-      reader.addEventListener("load", () => {
-        setImgData(reader.result);
-      });
-      reader.readAsDataURL(e.target.files[0]);
+      // reader.addEventListener("load", () => {
+      //   setImgData(reader.result);
+      // });
+      // reader.readAsDataURL(e.target.files[0]);
     }
   };
 
   return (
     <>
       <tr>
+
+
+        <th style={{ padding: '1rem 1rem 1rem 3rem' }}>{article.id}</th>
+        <td >{article.title}</td>
+        <td className="text">{article.body}</td>
+        <td >{orderDate}</td>
+        <td style={{ textAlign: 'end' }}>
+          <button onClick={() => handleArticleModalOpen(article.id)} type="button"
+            className="btn btn-success btn-circle" style={{ marginRight: '10px' }} data-tip="Edit Article"
+            data-for='toolTip1' data-place='top' data-toggle="modal"
+            data-target="#add-alert-modal" >
+            <i className="fa fa-edit"></i></button>
+          <button onClick={() => handleModalOpen(article.id)} type="button"
+            className="btn btn-danger btn-circle" data-tip="Remove Article"
+            data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
+            data-target="#warning-alert-modal"><i className="fa fa-times"></i></button>
+
+          <ReactTooltip id="toolTip1" />
+          <ReactTooltip id="toolTip2" />
+        </td>
         <td style={{ padding: '1rem 1rem 1rem 0' }}>
           <div id="add-alert-modal" className="modal fade" tabIndex="-1" role="dialog"
             aria-hidden="true">
@@ -140,7 +160,7 @@ const ArticleItem = ({ article }) => {
                   <div className="">
                     <i className="dripicons-warning h1 text-warning"></i>
                     <p>Are you sure you want to remove this article?</p>
-                    <button type="submit" onClick={handleSubmit(deleteArticle)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
+                    <button type="submit" onClick={deleteArticle} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal">No</button>
@@ -150,25 +170,6 @@ const ArticleItem = ({ article }) => {
               </div>
             </div>
           </div>
-        </td>
-
-        <td >{article.id}</td>
-        <td >{article.title}</td>
-        <td className="text">{article.body}</td>
-        <td >{orderDate}</td>
-        <td>
-          <button onClick={() => handleArticleModalOpen(article.id)} type="button"
-            className="btn btn-success btn-circle" style={{ marginRight: '10px' }} data-tip="Update Article"
-            data-for='toolTip1' data-place='top' data-toggle="modal"
-            data-target="#add-alert-modal" >
-            <i className="fa fa-plus"></i></button>
-          <button onClick={() => handleModalOpen(article.id)} type="button"
-            className="btn btn-danger btn-circle" data-tip="Remove User"
-            data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
-            data-target="#warning-alert-modal"><i className="fa fa-times"></i></button>
-
-          <ReactTooltip id="toolTip1" />
-          <ReactTooltip id="toolTip2" />
         </td>
       </tr>
     </>

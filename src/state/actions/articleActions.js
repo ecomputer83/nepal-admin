@@ -141,12 +141,9 @@ const addArticle = (payload) => dispatch => {
   };
   axios.post(`${baseUrl}/Article`, payload, axiosCon)
     .then(res => {
-      if (res.status === 'success') {
-        dispatch(addArticleSuccess());
-        dispatch(articleActions.getArticles());
-        return res;
-      }
-
+      dispatch(addArticleSuccess());
+      dispatch(articleActions.getArticles());
+      return res;
     }).catch(error => {
       dispatch(addArticleError(error));
     })
@@ -172,7 +169,6 @@ const deleteArticle = (id) => dispatch => {
     .then(res => {
       dispatch(deleteArticleSuccess());
       dispatch(articleActions.getArticles());
-
       return res
     }).catch(error => {
       dispatch(deleteArticleError(error));

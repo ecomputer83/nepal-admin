@@ -36,11 +36,11 @@ const Articles = () => {
               <table className="table table-striped mb-0">
                 <thead className="bg-primary text-white">
                   <tr>
-                    <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                    <th scope="col">Id</th>
+                    <th style={{ padding: '1rem 1rem 1rem 3rem' }}>Id</th>
                     <th scope="col">Title</th>
                     <th scope="col">Body</th>
                     <th scope="col">Date</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
