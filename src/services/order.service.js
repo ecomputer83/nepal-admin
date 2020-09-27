@@ -13,7 +13,7 @@ const getAllOrders = () => {
     })
 }
 
-const approveOrder = (id) => {
+const markAsComplete = (id) => {
   return axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
     .then(response => {
       return response;
@@ -33,6 +33,6 @@ const rejectOrder = (id) => {
 
 export const orderService = {
   getAllOrders,
-  approveOrder,
+  markAsComplete,
   rejectOrder
 };

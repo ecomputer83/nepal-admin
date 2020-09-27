@@ -41,9 +41,9 @@ const getOrders = () => dispatch => {
     })
 }
 
-const approveOrder = ({ id }) => dispatch => {
+const markAsComplete = ({ id }) => dispatch => {
   dispatch(getOrderPending());
-  orderService.approveOrder(id)
+  orderService.markAsComplete(id)
     .then(res => {
       dispatch(orderActions.getOrders())
       // return res.data;
@@ -70,6 +70,6 @@ const rejectOrder = ({ id }) => dispatch => {
 
 export const orderActions = {
   getOrders,
-  approveOrder,
+  markAsComplete,
   rejectOrder
 };

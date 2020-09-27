@@ -2,6 +2,8 @@ import * as t from './actionTypes';
 import history from 'utils/history';
 import { constants } from 'utils/constants';
 
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const axios = require('axios');
 const baseUrl = constants.baseUrl;
@@ -43,7 +45,9 @@ const getUser = () => dispatch => {
         if (data.data.isIPMAN) {
           history.push('/user-management')
         } else {
+          // return <Redirect to="/credit-approval" />
           history.push('/credit-approval')
+
         }
       } else {
         alert('Login Failed', 'Username or Password is incorrect');

@@ -49,7 +49,10 @@ const OrderManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
+                    <OrderItem/>
+                    <OrderItem/>
+                    <OrderItem/>
+                    {/* {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>} */}
                   </tbody>
                 </table>
               </div>
