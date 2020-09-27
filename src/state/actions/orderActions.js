@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 
 import { orderService } from 'services/order.service';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -46,10 +48,14 @@ const markAsComplete = ({ id }) => async dispatch => {
   await orderService.markAsComplete(id)
     .then(res => {
       dispatch(orderActions.getOrders())
+      toast.success("Order has been marked as complete!");
+
       // return res.data;
     })
     .catch(error => {
       dispatch(getOrderError(error));
+      toast.error(error);
+
     })
 }
 

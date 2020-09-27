@@ -1,5 +1,7 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
+import { toast } from 'react-toastify';
+
 
 const axios = require('axios');
 
@@ -78,9 +80,13 @@ const addCreditLimit = (payload) => dispatch => {
     .then(res => {
       dispatch(addCreditLimitSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("Credit limit has been added!");
+
     })
     .catch(error => {
       dispatch(addCreditError(error));
+      toast.error(error);
+
     })
 }
 
@@ -90,9 +96,13 @@ const addUser = (payload) => dispatch => {
     .then(res => {
       dispatch(addUserSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("User has been added!");
+
     })
     .catch(error => {
       dispatch(getUsersError(error));
+      toast.error(error);
+
     })
 }
 
@@ -102,9 +112,13 @@ const deleteUser = (id) => dispatch => {
     .then(res => {
       dispatch(deleteUserSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("User has been deleted!");
+
     })
     .catch(error => {
       dispatch(deleteUserError(error));
+      toast.error(error);
+
     })
 }
 

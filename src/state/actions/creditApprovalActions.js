@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 
 import { creditApprovalService } from 'services/creditapproval.service';
+import { toast } from 'react-toastify';
+
 
 
 //#regionAction Creators
@@ -46,10 +48,14 @@ const approveCreditOrder = ({ id }) => dispatch => {
   creditApprovalService.approveCreditOrder(id)
     .then(res => {
       dispatch(creditApprovalActions.getCreditApprovals())
+      toast.success("Credit has been approved successfully!");
+
       // return res.data;
     })
     .catch(error => {
       dispatch(getCreditApprovalError(error));
+      toast.error(error);
+
     })
 }
 
@@ -58,10 +64,12 @@ const rejectCreditOrder = ({ id }) => dispatch => {
   creditApprovalService.rejectCreditOrder(id)
     .then(res => {
       dispatch(creditApprovalActions.getCreditApprovals())
+      toast.success("Credit has been rejected successfully!");
       // return res.data;
     })
     .catch(error => {
       dispatch(getCreditApprovalError(error));
+      toast.error(error);
     })
 }
 

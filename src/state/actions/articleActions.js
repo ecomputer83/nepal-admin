@@ -1,5 +1,7 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
+import { toast } from 'react-toastify';
+
 
 const axios = require('axios');
 
@@ -143,9 +145,11 @@ const addArticle = (payload) => dispatch => {
     .then(res => {
       dispatch(addArticleSuccess());
       dispatch(articleActions.getArticles());
+      toast.success("Article has been added!");
       return res;
     }).catch(error => {
       dispatch(addArticleError(error));
+      toast.error(error);
     })
 
 }
@@ -156,10 +160,11 @@ const updateArticle = (id, payload) => dispatch => {
     .then(res => {
       dispatch(putArticleSuccess());
       dispatch(articleActions.getArticles());
-
+      toast.success("Article has been updated!");
       return res
     }).catch(error => {
       dispatch(putArticleError(error));
+      toast.error(error);
     })
 }
 
@@ -169,9 +174,11 @@ const deleteArticle = (id) => dispatch => {
     .then(res => {
       dispatch(deleteArticleSuccess());
       dispatch(articleActions.getArticles());
+      toast.success("Article has been deleted!");
       return res
     }).catch(error => {
       dispatch(deleteArticleError(error));
+      toast.error(error);
     })
 }
 

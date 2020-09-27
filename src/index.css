@@ -42,3 +42,7 @@ code {
   display: inline-block;
   max-width: 100%;
 }
+
+.lds-ripple {
+  left: calc(36% - 3.5px);
+}

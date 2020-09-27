@@ -1,5 +1,7 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
+import { toast } from 'react-toastify';
+
 
 const axios = require('axios');
 const baseUrl = constants.baseUrl;
@@ -68,10 +70,13 @@ const addAdmin = (payload) => dispatch => {
     .then(res => {
       dispatch(addAdminSuccess(res.data));
       dispatch(adminActions.getAllAdmin());
+      toast.success("Admin has been added!");
+
       return res.data;
     })
     .catch(error => {
       dispatch(addAdminError(error));
+      toast.error(error);
     });
 }
 
@@ -92,10 +97,12 @@ const addAdminRole = (payload) => dispatch => {
     .then(res => {
       dispatch(addAdminRoleSucess(res.data));
       dispatch(adminActions.getAdminRole());
+      toast.success("Role has been added!");
       return res.data;
     })
     .catch(error => {
       dispatch(getAllAdminError(error));
+      toast.error(error);
     });
 }
 

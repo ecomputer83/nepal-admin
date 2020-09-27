@@ -7,6 +7,7 @@ import { articleActions } from 'state/actions/articleActions';
 
 
 
+
 const ArticleItem = ({ article }) => {
 
   const [picture, setPicture] = useState(null);
