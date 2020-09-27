@@ -26,6 +26,11 @@ const orderReducer = (state = defaultState, action) => {
         pending: false,
         error: action.error
       }
+    case t.GET_ORDERS_PENDING_SUCCESS:
+      return {
+        ...state,
+        pending: false
+      }
     default:
       return state;
   }

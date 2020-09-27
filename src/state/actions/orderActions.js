@@ -18,6 +18,12 @@ const getOrderPending = () => {
   }
 }
 
+const getOrderPendingSuccess = () => {
+  return {
+    type: t.GET_ORDERS_PENDING_SUCCESS
+  }
+}
+
 const getOrderError = (error) => {
   return {
     type: t.GET_ORDERS_ERROR,
@@ -45,7 +51,7 @@ const markAsComplete = ({ id }) => async dispatch => {
   dispatch(getOrderPending());
   await orderService.markAsComplete(id)
     .then(res => {
-      dispatch(orderActions.getOrders())
+      dispatch(orderActions.getAllOrders())
       // return res.data;
     })
     .catch(error => {
@@ -54,17 +60,15 @@ const markAsComplete = ({ id }) => async dispatch => {
 }
 
 const getOrder = ({ id }) => async dispatch => {
-  // dispatch(getOrderPending());
-  await orderService.getOrder(id)
+  dispatch(getOrderPending());
+  return await orderService.getOrder(id)
     .then(res => {
-      console.log('getOrder', res);
-      // dispatch(getOrderPending());
-      return res
-      // return res.data;
+      dispatch(getOrderPendingSuccess());
+      return res.data
     })
     .catch(error => {
+      dispatch(getOrderPendingSuccess());
       console.log('getOrder', error);
-      // dispatch(getOrderPending());
     })
 }
 

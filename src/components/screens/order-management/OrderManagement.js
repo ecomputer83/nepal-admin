@@ -22,7 +22,7 @@ const OrderManagement = () => {
   }, [dispatch])
 
 
-  const orderItems = orders.map((o) => <OrderItem key={o.id} order={o} />);
+  const orderItems = orders.map((o) => <OrderItem key={o.orderId} order={o} />);
 
   return (
     <div>
@@ -49,11 +49,7 @@ const OrderManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* <OrderItem/>
-                    <OrderItem/>
-                  */}
-                    <OrderItem/> 
-                    {/* {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>} */}
+                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>
