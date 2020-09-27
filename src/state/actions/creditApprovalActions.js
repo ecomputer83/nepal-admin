@@ -1,11 +1,6 @@
 import * as t from './actionTypes';
-import { constants } from 'utils/constants';
 
-const axios = require('axios');
-
-
-const baseUrl = constants.baseUrl;
-const axiosConfig = constants.axiosConfig;
+import { creditApprovalService } from 'services/creditapproval.service';
 
 
 //#regionAction Creators
@@ -35,10 +30,35 @@ const getCreditApprovalError = (error) => {
 
 const getCreditApprovals = () => dispatch => {
   dispatch(getCreditApprovalPending());
-  axios.get(`${baseUrl}/Credit/iPMANCredits`, axiosConfig)
+  creditApprovalService.getAllCreditApprovals()
     .then(res => {
       dispatch(getCreditApprovalSuccess(res.data));
       return res.data;
+    })
+    .catch(error => {
+      dispatch(getCreditApprovalError(error));
+    })
+}
+
+
+const approveCreditOrder = ({ id }) => dispatch => {
+  dispatch(getCreditApprovalPending());
+  creditApprovalService.approveCreditOrder(id)
+    .then(res => {
+      dispatch(creditApprovalActions.getCreditApprovals())
+      // return res.data;
+    })
+    .catch(error => {
+      dispatch(getCreditApprovalError(error));
+    })
+}
+
+const rejectCreditOrder = ({ id }) => dispatch => {
+  dispatch(getCreditApprovalPending());
+  creditApprovalService.rejectCreditOrder(id)
+    .then(res => {
+      dispatch(creditApprovalActions.getCreditApprovals())
+      // return res.data;
     })
     .catch(error => {
       dispatch(getCreditApprovalError(error));
@@ -49,5 +69,7 @@ const getCreditApprovals = () => dispatch => {
 
 
 export const creditApprovalActions = {
-  getCreditApprovals
+  getCreditApprovals,
+  approveCreditOrder,
+  rejectCreditOrder
 };
