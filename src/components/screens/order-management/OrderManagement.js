@@ -34,7 +34,7 @@ const OrderManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Order Management" />
+              <BreadCrumb title="Order Management" isAdmin="neutral"/>
               <div className="table-responsive">
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">

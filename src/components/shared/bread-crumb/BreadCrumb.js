@@ -261,102 +261,109 @@ const BreadCrumb = ({ title, isAdmin }) => {
                 </div>
               </div>
               :
-              <div className="col-5 align-self-center">
-                <div className="customize-input float-right">
-                  <button type="button" className="btn wasves-effect waves-light btn-info" onClick={openModal}>Add New User</button>
-                  <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={userStyles}
-                    contentLabel="Example Modal">
-
-                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Add User</h2>
-                    <br />
-                    {/* <button onClick={closeModal}>close</button> */}
-                    <form className="pl-3 pr-3" action="#">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="ipmancode">IPMANCode</label>
-                            <input className="form-control" type="text" id="ipmancode"
-                              required="" placeholder="IPMANCode" name="ipmanCode" ref={register} />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="businessname">Business Name </label>
-                            <input className="form-control" type="text" id="businessname"
-                              required="" placeholder="Business Name" name="businessName" ref={register} />
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="rcnumber">RC Number</label>
-                            <input className="form-control" type="text" id="rcnumber"
-                              required="" placeholder="RC Number" name="rcNumber" ref={register} />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="address">Address</label>
-                            <input className="form-control" type="address" id="address"
-                              required="" placeholder="Address" name="address" ref={register} />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="emailaddress">Email</label>
-                            <input className="form-control" type="email" id="emailaddress"
-                              required="" placeholder="Email" name="email" ref={register} />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="username">User Name</label>
-                            <input className="form-control" type="text" id="username"
-                              required="" placeholder="User Name" name="contactName" ref={register} />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="phoneNumber">Phone Number</label>
-                            <input className="form-control" type="text" id="phoneNumber"
-                              required="" placeholder="Phone Number" name="phoneNumber" ref={register} />
-                          </div>
-                        </div>
-
-
-                      </div>
-
-
-
-
-                      <div className="form-group text-center">
-                        <div className="customize-input float-right">
-                          <button className="btn btn-primary" onClick={handleSubmit(addUser)} style={{ marginRight: '20px' }} type="submit">Add User</button>
-                          <button className="btn btn-danger" type="submit">Cancel</button>
-                        </div>
-                      </div>
-
-                    </form>
-
-
-                  </Modal>
+              isAdmin == "neutral" ?
+                <div className="col-5 align-self-center">
+                  <div className="customize-input float-right">
+                  </div>
                 </div>
-              </div>}
+                :
+                <div className="col-5 align-self-center">
+                  <div className="customize-input float-right">
+                    <button type="button" className="btn wasves-effect waves-light btn-info" onClick={openModal}>Add New User</button>
+                    <Modal
+                      isOpen={modalIsOpen}
+                      onAfterOpen={afterOpenModal}
+                      onRequestClose={closeModal}
+                      style={userStyles}
+                      contentLabel="Example Modal">
+
+                      <h2 ref={_subtitle => (subtitle = _subtitle)}>Add User</h2>
+                      <br />
+                      {/* <button onClick={closeModal}>close</button> */}
+                      <form className="pl-3 pr-3" action="#">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="ipmancode">IPMANCode</label>
+                              <input className="form-control" type="text" id="ipmancode"
+                                required="" placeholder="IPMANCode" name="ipmanCode" ref={register} />
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="businessname">Business Name </label>
+                              <input className="form-control" type="text" id="businessname"
+                                required="" placeholder="Business Name" name="businessName" ref={register} />
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="rcnumber">RC Number</label>
+                              <input className="form-control" type="text" id="rcnumber"
+                                required="" placeholder="RC Number" name="rcNumber" ref={register} />
+                            </div>
+                          </div>
+
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="address">Address</label>
+                              <input className="form-control" type="address" id="address"
+                                required="" placeholder="Address" name="address" ref={register} />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="emailaddress">Email</label>
+                              <input className="form-control" type="email" id="emailaddress"
+                                required="" placeholder="Email" name="email" ref={register} />
+                            </div>
+                          </div>
+
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="username">User Name</label>
+                              <input className="form-control" type="text" id="username"
+                                required="" placeholder="User Name" name="contactName" ref={register} />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <label htmlFor="phoneNumber">Phone Number</label>
+                              <input className="form-control" type="text" id="phoneNumber"
+                                required="" placeholder="Phone Number" name="phoneNumber" ref={register} />
+                            </div>
+                          </div>
+
+
+                        </div>
+
+
+
+
+                        <div className="form-group text-center">
+                          <div className="customize-input float-right">
+                            <button className="btn btn-primary" onClick={handleSubmit(addUser)} style={{ marginRight: '20px' }} type="submit">Add User</button>
+                            <button className="btn btn-danger" type="submit">Cancel</button>
+                          </div>
+                        </div>
+
+                      </form>
+
+
+                    </Modal>
+                  </div>
+                </div>
+          }
         </div>
       </div>
     </div >
