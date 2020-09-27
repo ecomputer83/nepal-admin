@@ -18,7 +18,7 @@ const OrderManagement = () => {
   const pending = oReducer.pending;
 
   useEffect(() => {
-    dispatch(orderActions.getOrders())
+    dispatch(orderActions.getAllOrders())
   }, [dispatch])
 
 
@@ -41,15 +41,19 @@ const OrderManagement = () => {
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
                       <th scope="col">Order Date</th>
-                      <th scope="col">Order No</th>
+                      <th scope="col">Order Id</th>
+                      <th scope="col">Quantity</th>
                       <th scope="col">Total Amount (#)</th>
-                      <th scope="col">Bank Name</th>
-                      <th scope="col">Teller No</th>
+                      <th scope="col">Order No</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
+                    {/* <OrderItem/>
+                    <OrderItem/>
+                  */}
+                    <OrderItem/> 
+                    {/* {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>} */}
                   </tbody>
                 </table>
               </div>

@@ -4,8 +4,8 @@ import { constants } from 'utils/constants';
 const baseUrl = constants.baseUrl;
 const axiosConfig = constants.axiosConfig;
 
-const getAllOrders = () => {
-  return axios.get(`${baseUrl}/Order`, axiosConfig)
+const getAllPaymentOrders = () => {
+  return axios.get(`${baseUrl}/Credit/BankDeposits`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {
@@ -13,8 +13,9 @@ const getAllOrders = () => {
     })
 }
 
-const getOrder = (id) => {
-  return axios.get(`${baseUrl}/Order/${id}`, axiosConfig)
+const approvePaymentOrder = (id) => {
+  debugger
+  return axios.get(`${baseUrl}/Credit/approve/${id}`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {
@@ -22,8 +23,9 @@ const getOrder = (id) => {
     })
 }
 
-const markAsComplete = (id) => {
-  return axios.get(`${baseUrl}/Order/completeorder/${id}`, axiosConfig)
+const rejectPaymentOrder = (id) => {
+  debugger
+  return axios.get(`${baseUrl}/Credit/reject/${id}`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {
@@ -31,8 +33,8 @@ const markAsComplete = (id) => {
     })
 }
 
-export const orderService = {
-  getAllOrders,
-  markAsComplete,
-  getOrder
+export const paymentService = {
+  getAllPaymentOrders,
+  approvePaymentOrder,
+  rejectPaymentOrder
 };

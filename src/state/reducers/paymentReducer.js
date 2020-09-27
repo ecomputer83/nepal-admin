@@ -2,25 +2,25 @@ import * as t from '../actions/actionTypes';
 
 
 const defaultState = {
-  orders: [],
+  paymentOrders: [],
   error: null,
   pending: false
 }
 
-const orderReducer = (state = defaultState, action) => {
+const paymentReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case t.GET_ORDERS_SUCCESS:
+    case t.GET_PAYMENTS_SUCCESS:
       return {
         ...state,
         pending: false,
-        orders: action.payload
+        paymentOrders: action.payload
       }
-    case t.GET_ORDERS_PENDING:
+    case t.GET_PAYMENTS_PENDING:
       return {
         ...state,
         pending: true
       }
-    case t.GET_ORDERS_ERROR:
+    case t.GET_PAYMENTS_ERROR:
       return {
         ...state,
         pending: false,
@@ -32,4 +32,4 @@ const orderReducer = (state = defaultState, action) => {
 }
 
 
-export default orderReducer;
+export default paymentReducer;

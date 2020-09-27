@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux';
 import { format } from "date-fns";
 import ReactTooltip from "react-tooltip";
 
+import { paymentActions } from "state/actions/paymentActions";
 import Modal from 'react-modal';
-
-import { creditApprovalActions } from "state/actions/creditApprovalActions";
 
 
 const cStyle = {
@@ -20,13 +19,13 @@ const cStyle = {
   overlay: { backgroundColor: 'rgba(127, 122, 122, 0.62)' },
 };
 
-const CreditApprovalItem = ({ creditApproval }) => {
+const PaymentItem = ({ payment }) => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
   const [operation, setOperation] = useState('');
 
-  var date = new Date(creditApproval.order.orderDate);
-  var orderDate = format(date, 'dd-MM-yyyy');
+  var date = new Date(payment.order.orderDate);
+  var paymentDate = format(date, 'dd-MM-yyyy');
 
   const dispatch = useDispatch();
 
@@ -42,10 +41,10 @@ const CreditApprovalItem = ({ creditApproval }) => {
 
 
   const approve = () => {
-    if (operation === "approve") {
-      dispatch(creditApprovalActions.approveCreditOrder({ id }))
+    if (operation === 'approve') {
+      dispatch(paymentActions.approvePayment({ id }))
     } else {
-      dispatch(creditApprovalActions.rejectCreditOrder({ id }))
+      dispatch(paymentActions.rejectPayment({ id }))
     }
     setOpen(false);
   }
@@ -53,6 +52,8 @@ const CreditApprovalItem = ({ creditApproval }) => {
   const reject = () => {
     setOpen(false);
   }
+
+
 
   return (
     <>
@@ -65,29 +66,28 @@ const CreditApprovalItem = ({ creditApproval }) => {
             contentLabel="Example Modal"
           >
             <br />
-            <div><p>  Are you sure you want to {operation} the credit request?</p></div>
+            <div><p>  Are you sure you want to {operation}?</p></div>
             <div style={{ float: 'right' }}>
               <button type="button" style={{ marginRight: '1em' }} className="btn wasves-effect waves-light btn-info" onClick={approve} autoFocus>Yes</button>
               <button type="button" className="btn wasves-effect waves-light btn-light" onClick={reject} >No</button>
             </div>
           </Modal>
         </td>
-        <td>{creditApproval.order.user.ipmanCode}</td>
-        <td>{creditApproval.order.user.businessName}</td>
-        <td>{orderDate}</td>
-        <td>{creditApproval.order.orderNo}</td>
-        <td>{creditApproval.credit.totalAmount}</td>
-        <td>{creditApproval.order.user.creditBalance}</td>
+        <td>{paymentDate}</td>
+        <td>{payment.order.orderNo}</td>
+        <td>{payment.credit.totalAmount}</td>
+        <td>{payment.credit.name}</td>
+        <td>{payment.credit.reference}</td>
         <td>
-          <button type="button" onClick={() => handleClickOpen(creditApproval.id, 'approve')} data-tip="Approve Credit" data-for='toolTip1' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-check"></i></button>
-          <button type="button" onClick={() => handleClickOpen(creditApproval.id, 'reject')} data-tip="Reject Credit" data-for='toolTip2' className="btn btn-danger btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-times"></i></button>
+          <button type="button" onClick={() => handleClickOpen(payment.id, 'approve')} data-tip="Approve Payment Order" data-for='toolTip1' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-check"></i></button>
+          <button type="button" onClick={() => handleClickOpen(payment.id, 'reject')} data-tip="Reject Payment Order" data-for='toolTip2' className="btn btn-danger btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-times"></i></button>
           <ReactTooltip id="toolTip1" />
           <ReactTooltip id="toolTip2" />
         </td>
-      </tr>
+      </tr >
     </>
   )
 }
 
 
-export default CreditApprovalItem;
+export default PaymentItem;

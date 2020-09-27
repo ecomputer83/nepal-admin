@@ -2,6 +2,8 @@ import * as t from './actionTypes';
 import history from 'utils/history';
 import { constants } from 'utils/constants';
 
+// import React from 'react';
+// import { Redirect } from 'react-router-dom';
 
 const axios = require('axios');
 const baseUrl = constants.baseUrl;
@@ -38,11 +40,14 @@ const getUser = () => dispatch => {
     .then(data => {
       if (data !== null) {
         localStorage.setItem("nepal-user", data.data.userName);
+        localStorage.setItem("isIPMAN", data.data.isIPMAN);
         dispatch(setUser(data.data))
         if (data.data.isIPMAN) {
           history.push('/user-management')
         } else {
+          // return <Redirect to="/credit-approval" />
           history.push('/credit-approval')
+
         }
       } else {
         alert('Login Failed', 'Username or Password is incorrect');
@@ -67,6 +72,7 @@ const autoLogin = () => dispatch => {
 const logOut = () => dispatch => {
   localStorage.removeItem('nepal-user');
   localStorage.removeItem('nepal-token');
+  localStorage.removeItem('isIPMAN');
   history.push('/');
 
 }

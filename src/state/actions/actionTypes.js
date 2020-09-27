@@ -10,10 +10,7 @@ export const GET_USERS_ERROR = "GET_USERS_ERROR";
 export const GET_USERS_PENDING = "GET_USERS_PENDING";
 export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_ERROR = "DELETE_USER_ERROR";
-
-
 //#endregion useractions
-
 
 
 //#region creditapproval
@@ -26,6 +23,12 @@ export const GET_CREDITAPPROVALS_PENDING = "GET_CREDITAPPROVALS_PENDING";
 export const GET_ORDERS_SUCCESS = "GET_ORDERS_SUCCESS";
 export const GET_ORDERS_ERROR = "GET_ORDERS_SUCCESS";
 export const GET_ORDERS_PENDING = "GET_ORDERS_PENDING";
+//#endregion
+
+//#region PAYMENT
+export const GET_PAYMENTS_SUCCESS = "GET_PAYMENTS_SUCCESS";
+export const GET_PAYMENTS_ERROR = "GET_PAYMENTS_SUCCESS";
+export const GET_PAYMENTS_PENDING = "GET_PAYMENTS_PENDING";
 //#endregion
 
 //#region article
