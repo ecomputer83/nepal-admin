@@ -50,7 +50,8 @@ const OrderItem = ({ order }) => {
     setIsOpen(true);
   };
 
-  const getOrder = async (id) => {
+  const getOrder = async (id, ops) => {
+    setOperation(ops)
     let sOrder = await dispatch(orderActions.getOrder({ id }));
     // if (sOrder) {
     console.log('orderitem', sOrder);
@@ -78,7 +79,7 @@ const OrderItem = ({ order }) => {
     <>
       <tr>
         <td style={{ padding: '1rem 1rem 1rem 0' }}>
-          {operation == 'markComplete' ?
+          {operation === 'markComplete' ?
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={handleClose}
@@ -196,7 +197,7 @@ const OrderItem = ({ order }) => {
         <td>{order.orderNo}</td> */}
         <td>
           {/* <button type="button" onClick={() => getOrder(order.orderId)} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button> */}
-          <button type="button" onClick={() => getOrder(2)} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button>
+          <button type="button" onClick={() => getOrder(2, 'details')} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button>
           <button type="button" onClick={() => handleClickOpen('order.orderId', 'markComplete')} data-tip="Mark As Completed" data-for='toolTip2' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-check"></i></button>
           <ReactTooltip id="toolTip1" />
           <ReactTooltip id="toolTip2" />
