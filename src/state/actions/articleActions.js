@@ -33,7 +33,7 @@ const getArticlesError = (error) => {
 
 //#region 
 const getArticles = () => dispatch => {
-  dispatch(getArticlesPending());
+  // dispatch(getArticlesPending());
   axios.get(`${baseUrl}/Article`, axiosConfig)
     .then(res => {
       dispatch(getArticlesSuccess(res.data));

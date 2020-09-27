@@ -36,7 +36,7 @@ const getOrderError = (error) => {
 //#region 
 
 const getAllOrders = () => async dispatch => {
-  dispatch(getOrderPending());
+  // dispatch(getOrderPending());
   await orderService.getAllOrders()
     .then(res => {
       dispatch(getOrderSuccess(res.data));
