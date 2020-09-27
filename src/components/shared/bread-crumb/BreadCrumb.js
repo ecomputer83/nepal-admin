@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'state/actions/userActions';
 import { adminActions } from 'state/actions/adminActions';
+import { articleActions } from 'state/actions/articleActions';
 
 
 
@@ -35,7 +36,7 @@ const userStyles = {
 }
 
 Modal.setAppElement('#root')
-const BreadCrumb = ({ title, isAdmin, showBtn }) => {
+const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
   const dispatch = useDispatch();
   const reducer = useSelector(state => state.adminReducer);
   const roles = reducer.role;
@@ -51,6 +52,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
   var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [roleModalIsOpen, setIsRoleOpen] = useState(false);
+  const [articleModalIsOpen, setIsArticleOpen] = useState(false);
 
 
   function openModal() {
@@ -77,6 +79,14 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
     setIsOpen(false);
   }
 
+  function openArticleModal() {
+    setIsArticleOpen(true);
+  }
+
+  function closeArticleModal() {
+    setIsArticleOpen(false);
+  }
+
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     subtitle.style.color = '#385A9E';
@@ -87,6 +97,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
   const { register, handleSubmit, errors, watch, formState } = useForm({
     mode: "onChange"
   });
+
   const password = useRef({});
   password.current = watch("password", "");
   const addUser = data => {
@@ -127,6 +138,35 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
     dispatch(adminActions.addAdminRole(payload));
     closeRoleModal();
   }
+
+
+  const [picture, setPicture] = useState(null);
+  const [imgData, setImgData] = useState(null);
+
+  const addArticle = (data) => {
+    data.imageFile = picture
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("body", data.body);
+    formData.append("imageFile", data.imageFile);
+    dispatch(articleActions.addArticle(formData));
+    closeArticleModal();
+  }
+
+  const handleChange = e => {
+    e.preventDefault()
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+      // const reader = new FileReader();
+
+      // reader.addEventListener("load", () => {
+      //   setImgData(reader.result);
+      // });
+      // reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+
 
   return (
     <div>
@@ -406,6 +446,77 @@ const BreadCrumb = ({ title, isAdmin, showBtn }) => {
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
                           <button className="btn btn-primary" disabled={!formState.isValid} onClick={handleSubmit(addUser)} style={{ marginRight: '20px' }} type="submit">Add User</button>
+                          <button className="btn btn-danger" type="submit">Cancel</button>
+                        </div>
+                      </div>
+                    </form>
+                  </Modal>
+                </div>
+              </div>
+              :
+              null
+          }
+          {
+            articleBtn === "true" ?
+              <div className="col-5 align-self-center">
+                <div className="customize-input float-right">
+                  <button type="button" className="btn wasves-effect waves-light btn-info" onClick={openArticleModal}>Add New Article</button>
+                  <Modal
+                    isOpen={articleModalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeArticleModal}
+                    style={userStyles}
+                    contentLabel="Example Modal">
+
+                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Add Article</h2>
+                    <br />
+                    {/* <button onClick={closeModal}>close</button> */}
+                    <form className="pl-3 pr-3" action="#">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="title">Title</label>
+                            <input className="form-control" type="text" id="title"
+                              required="" placeholder="Title" name="title" ref={register({
+                                required: "Title is required",
+                              })} />
+                            {errors.title && <p className="error">{errors.title.message}</p>}
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="emailaddress">Body</label>
+                            <textarea className="form-control" rows="4" name="body" ref={register({
+                              required: "Body is required",
+                            })}></textarea>
+                            {errors.body && <p className="error">{errors.body.message}</p>}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label htmlFor="phoneNumber">Upload Article Image</label>
+                            <input
+                              type="file"
+                              id="upload-button"
+                              // style={{ display: "none" }}
+                              onChange={handleChange}
+                            />
+                            {/* <br />
+                            <button onClick={handleUpload}>Upload</button> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="form-group text-center">
+                        <div className="customize-input float-right">
+                          <button className="btn btn-primary" disabled={!formState.isValid}
+                            onClick={handleSubmit(addArticle)} style={{ marginRight: '20px' }}
+                            type="submit">Submit</button>
                           <button className="btn btn-danger" type="submit">Cancel</button>
                         </div>
                       </div>

@@ -45,10 +45,9 @@ const addCreditError = (error) => {
   }
 }
 
-const deleteUserSuccess = (data) => {
+const deleteUserSuccess = () => {
   return {
     type: t.DELETE_USER_SUCCESS,
-    payload: data
   }
 }
 

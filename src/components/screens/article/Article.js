@@ -19,29 +19,28 @@ const Articles = () => {
     dispatch(articleActions.getArticles())
   }, [dispatch])
 
-  const articleItems = articles.map((ar) => <ArticleItem key={ar.id} creditApproval={ar} />);
+  const articleItems = articles.map((ar) => <ArticleItem key={ar.id} article={ar} />);
 
 
   return (
     <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
       data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-      {pending ? <Spinner /> : null}
       <HeaderNav />
       <LeftNav />
       <div className="page-wrapper" style={{ display: 'block' }}>
         <div className="col-12">
           <div className="card">
-            <BreadCrumb title="Articles" />
+            <BreadCrumb title="Articles" articleBtn="true" />
             <div className="table-responsive">
+              {pending ? <Spinner /> : null}
               <table className="table table-striped mb-0">
                 <thead className="bg-primary text-white">
                   <tr>
-                    <th style={{ padding: '1rem 1rem 1rem 3rem' }} scope="col">Business Name</th>
-                    <th scope="col">Order Date</th>
-                    <th scope="col">Order No</th>
-                    <th scope="col">Total Amount (#)</th>
-                    <th scope="col">Bank Name</th>
-                    <th scope="col">Teller No</th>
+                    <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Body</th>
+                    <th scope="col">Date</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
