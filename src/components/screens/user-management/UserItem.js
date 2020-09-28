@@ -52,12 +52,13 @@ const UserItem = ({ user }) => {
         <td>{user.email}</td>
         <td>{user.creditLimit}</td>
         <td>
+          {user.isIPMAn ?
           <button type="button" className="btn btn-success btn-circle" data-tip="Add Credit Limit"
             data-for='toolTip1' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
             data-target="#add-alert-modal" onClick={() => handleModalOpen(user.id)}>
             <i className="fa fa-plus">
             </i>
-          </button>
+          </button> : <span />}
           <button type="button" className="btn btn-danger btn-circle" data-tip="Remove User"
             data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
             data-target="#warning-alert-modal" onClick={() => handleModalOpen(user.id)}>

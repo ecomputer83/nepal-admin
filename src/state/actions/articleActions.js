@@ -152,7 +152,13 @@ const addArticle = (payload) => dispatch => {
 
 const updateArticle = (id, payload) => dispatch => {
   dispatch(putArticlePending());
-  axios.put(`${baseUrl}/Article/${id}`, payload, axiosConfig)
+  const axiosCon = {
+    headers: {
+      "Content-type": "multipart/form-data",
+      "Authorization": `Bearer ${localStorage.getItem("nepal-token")}`
+    }
+  };
+  axios.put(`${baseUrl}/Article/${id}`, payload, axiosCon)
     .then(res => {
       dispatch(putArticleSuccess());
       dispatch(articleActions.getArticles());

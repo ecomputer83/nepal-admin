@@ -65,7 +65,7 @@ const ArticleItem = ({ article }) => {
 
         <th style={{ padding: '1rem 1rem 1rem 3rem' }}>{article.id}</th>
         <td >{article.title}</td>
-        <td className="text">{article.body}</td>
+        <td className="text">{article.body.substring(0, 100)}...</td>
         <td >{orderDate}</td>
         <td style={{ textAlign: 'end' }}>
           <button onClick={() => handleArticleModalOpen(article.id)} type="button"
