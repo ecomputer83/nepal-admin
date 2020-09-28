@@ -31,16 +31,18 @@ const cStyle = {
   overlay: { backgroundColor: 'rgba(127, 122, 122, 0.62)' },
 };
 
-// const OrderItem = () => {
-
+let vv;
+let programItem;
 const OrderItem = ({ order }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [id, setId] = useState('');
   const [singleOrder, setIsSingleOrder] = useState({});
   const [operation, setOperation] = useState('');
 
-  // var date = new Date(order.orderDate);
-  // var orderDate = format(date, 'dd-MM-yyyy');
+  const formatDate = (orderDate) => {
+    var date = new Date(orderDate);
+    return orderDate = format(new Date(orderDate), 'dd-MM-yyyy');
+  }
 
   const dispatch = useDispatch();
 
@@ -50,19 +52,33 @@ const OrderItem = ({ order }) => {
     setIsOpen(true);
   };
 
-  const getOrder = async (id, ops) => {
+  const getOrder = (id, ops) => {
     setOperation(ops)
-    let sOrder = await dispatch(orderActions.getOrder({ id }));
-    // if (sOrder) {
-    console.log('orderitem', sOrder);
-    setIsSingleOrder(sOrder)
-    setIsOpen(true)
-    // }
+    dispatch(orderActions.getOrder({ id }))
+      .then(response => {
+        // console.log('orderitem', response)
+        response.orderDate = formatDate(response.orderDate);
+        setIsSingleOrder(response)
+        if (response.programs) {
+          programItem = response.programs.map((p) =>
+            <tr key={p.id}>
+              <td>{p.truckNo}</td>
+              <td>{p.destination}</td>
+              <td>{p.quantity}</td>
+            </tr >
+          )
+        } else {
+          programItem = <tr><td>No record available</td></tr>
+        }
+        setIsOpen(true)
+      })
+      .catch(err => console.log(err));
   }
 
   const handleClose = () => {
     setIsOpen(false);
   };
+
 
 
   const complete = () => {
@@ -102,25 +118,26 @@ const OrderItem = ({ order }) => {
             // shouldCloseOnOverlayClick={false}
             >
               <br />
+
               <div className="pl-3 pr-3" action="#">
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="orderdate">Order Date</label>
-                      <input className="form-control" type="text" id="orderdate" value="Order Date" disabled />
+                      <input className="form-control" type="text" id="orderdate" value={singleOrder.orderDate} disabled />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="orderid">Order Id </label>
-                      <input className="form-control" type="text" id="orderid" value="Order Id" disabled />
+                      <input className="form-control" type="text" id="orderid" value={singleOrder.orderId} disabled />
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="quantity">Quantity</label>
-                      <input className="form-control" type="text" id="quantity" value="Quantity" disabled />
+                      <input className="form-control" type="text" id="quantity" value={singleOrder.quantity} disabled />
                     </div>
                   </div>
                 </div>
@@ -129,55 +146,31 @@ const OrderItem = ({ order }) => {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="totalamount">Total Amount</label>
-                      <input className="form-control" type="text" id="totalamount" value="Total Amount" disabled />
+                      <input className="form-control" type="text" id="totalamount" value={singleOrder.totalAmount} disabled />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="orderno">Order No</label>
-                      <input className="form-control" type="text" id="orderno" value="Order No" disabled />
+                      <input className="form-control" type="text" id="orderno" value={singleOrder.orderNo} disabled />
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="address">Programs (OrderId)</label>
-                      <input className="form-control" type="text" id="orderno" value="Programs" disabled />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="emailaddress">Programs (OrderNumber)</label>
-                      <input className="form-control" type="text" id="orderno" value="Programs" disabled />
-                    </div>
-                  </div>
-
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="username">Programs (TruckNo)</label>
-                      <input className="form-control" type="text" id="orderno" value="Programs" disabled />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="username">Programs (Destination)</label>
-                      <input className="form-control" type="text" id="orderno" value="Programs" disabled />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="emailaddress">Programs (Quantity)</label>
-                      <input className="form-control" type="text" id="orderno" value="Programs" disabled />
-                    </div>
-                  </div>
-
                 </div>
               </div>
-
+              <div className="table-responsive">
+                <table className="table table-striped mb-0">
+                  <thead className="bg-primary text-white">
+                    <tr>
+                      <th scope="col">Truck No</th>
+                      <th scope="col">Destination</th>
+                      <th scope="col">Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {programItem}
+                  </tbody>
+                </table>
+              </div>
               <br />
               <div style={{ float: 'right' }}>
                 <button type="button" className="btn wasves-effect waves-light btn-light" onClick={reject} autoFocus>Back</button>
@@ -185,20 +178,14 @@ const OrderItem = ({ order }) => {
             </Modal>
           }
         </td>
-        <td>orderDate</td>
-        <td>order.orderId</td>
-        <td>order.quantity</td>
-        <td>order.totalAmount</td>
-        <td>order.orderNo</td>
-        {/* <td>{orderDate}</td>
+        <td>{formatDate(order.orderDate)}</td>
         <td>{order.orderId}</td>
-        <td>{order.quantity }</td>
+        <td>{order.quantity}</td>
         <td>{order.totalAmount}</td>
-        <td>{order.orderNo}</td> */}
+        <td>{order.orderNo}</td>
         <td>
-          {/* <button type="button" onClick={() => getOrder(order.orderId)} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button> */}
-          <button type="button" onClick={() => getOrder(2, 'details')} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button>
-          <button type="button" onClick={() => handleClickOpen('order.orderId', 'markComplete')} data-tip="Mark As Completed" data-for='toolTip2' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-check"></i></button>
+          <button type="button" onClick={() => getOrder(order.orderId, 'details')} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button>
+          <button type="button" onClick={() => handleClickOpen(order.orderId, 'markComplete')} data-tip="Mark As Completed" data-for='toolTip2' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-check"></i></button>
           <ReactTooltip id="toolTip1" />
           <ReactTooltip id="toolTip2" />
         </td>

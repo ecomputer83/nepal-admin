@@ -5,7 +5,7 @@ const baseUrl = constants.baseUrl;
 const axiosConfig = constants.axiosConfig;
 
 const getAllOrders = () => {
-  return axios.get(`${baseUrl}/Order`, axiosConfig)
+  return axios.get(`${baseUrl}/Order/ActiveOrders`, axiosConfig)
     .then(response => {
       return response;
     }).catch(err => {

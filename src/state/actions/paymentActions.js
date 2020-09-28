@@ -32,7 +32,7 @@ const getPaymentError = (error) => {
 //#region 
 
 const getPayments = () => dispatch => {
-  dispatch(getPaymentPending());
+  // dispatch(getPaymentPending());
   paymentService.getAllPaymentOrders()
     .then(res => {
       dispatch(getPaymentSuccess(res.data));

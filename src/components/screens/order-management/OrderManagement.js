@@ -22,7 +22,7 @@ const OrderManagement = () => {
   }, [dispatch])
 
 
-  const orderItems = orders.map((o) => <OrderItem key={o.id} order={o} />);
+  const orderItems = orders.map((o) => <OrderItem key={o.orderId} order={o} />);
 
   return (
     <div>
@@ -34,7 +34,7 @@ const OrderManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Order Management" />
+              <BreadCrumb title="Order Management" isAdmin="neutral"/>
               <div className="table-responsive">
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
@@ -49,11 +49,7 @@ const OrderManagement = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* <OrderItem/>
-                    <OrderItem/>
-                  */}
-                    <OrderItem/> 
-                    {/* {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>} */}
+                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>
