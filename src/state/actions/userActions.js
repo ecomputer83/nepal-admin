@@ -68,7 +68,8 @@ const getAllUsers = () => dispatch => {
       return res.data;
     })
     .catch(error => {
-      dispatch(getUsersError(error));
+      toast.error(error.toString());
+      dispatch(getUsersError(error.toString()));
     })
 }
 
@@ -84,9 +85,9 @@ const addCreditLimit = (payload) => dispatch => {
 
     })
     .catch(error => {
-      dispatch(addCreditError(error));
-      toast.error(error);
-
+      toast.error(error.toString());
+      dispatch(addCreditError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 
@@ -100,9 +101,9 @@ const addUser = (payload) => dispatch => {
 
     })
     .catch(error => {
-      dispatch(getUsersError(error));
-      toast.error(error);
-
+      toast.error(error.toString());
+      dispatch(getUsersError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 

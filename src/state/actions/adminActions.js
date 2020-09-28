@@ -60,6 +60,7 @@ const getAllAdmin = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getAllAdminError(error))
     });
 }
@@ -75,8 +76,8 @@ const addAdmin = (payload) => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(addAdminError(error));
-      toast.error(error);
     });
 }
 
@@ -87,6 +88,7 @@ const getAdminRole = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getAllAdminError(error));
     });
 }
@@ -101,8 +103,8 @@ const addAdminRole = (payload) => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getAllAdminError(error));
-      toast.error(error);
     });
 }
 

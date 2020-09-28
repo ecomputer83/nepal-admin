@@ -39,6 +39,7 @@ const getPayments = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getPaymentError(error));
     })
 }
@@ -48,14 +49,13 @@ const approvePayment = ({ id }) => dispatch => {
   paymentService.approvePaymentOrder(id)
     .then(res => {
       dispatch(paymentActions.getPayments())
-      toast.success("Prayer has been approved!");
+      toast.success("Payment has been approved!");
 
       // return res.data;
     })
     .catch(error => {
-      dispatch(getPaymentError(error));
-      toast.error(error);
-
+      toast.error(error.toString());
+      dispatch(getPaymentError(error.toString()));
     })
 }
 
@@ -64,13 +64,12 @@ const rejectPayment = ({ id }) => dispatch => {
   paymentService.rejectPaymentOrder(id)
     .then(res => {
       dispatch(paymentActions.getPayments())
-      toast.success("Order has been rejected!");
+      toast.success("Payment has been rejected!");
       // return res.data;
     })
     .catch(error => {
-      dispatch(getPaymentError(error));
-      toast.error(error);
-
+      toast.error(error.toString());
+      dispatch(getPaymentError(error.toString()));
     })
 }
 

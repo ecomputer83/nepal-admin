@@ -38,6 +38,7 @@ const getCreditApprovals = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getCreditApprovalError(error));
     })
 }
@@ -53,9 +54,8 @@ const approveCreditOrder = ({ id }) => dispatch => {
       // return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getCreditApprovalError(error));
-      toast.error(error);
-
     })
 }
 
@@ -68,8 +68,8 @@ const rejectCreditOrder = ({ id }) => dispatch => {
       // return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getCreditApprovalError(error));
-      toast.error(error);
     })
 }
 

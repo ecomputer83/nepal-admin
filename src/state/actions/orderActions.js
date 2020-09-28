@@ -45,6 +45,7 @@ const getAllOrders = () => async dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderError(error));
     })
 }
@@ -59,9 +60,8 @@ const markAsComplete = ({ id }) => async dispatch => {
       // return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderError(error));
-      toast.error(error);
-
     })
 }
 
@@ -73,8 +73,8 @@ const getOrder = ({ id }) => async dispatch => {
       return res.data
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderPendingSuccess());
-      console.log('getOrder', error);
     })
 }
 

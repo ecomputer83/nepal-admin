@@ -119,6 +119,7 @@ const getArticles = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getArticlesError(error));
     })
 }
@@ -129,6 +130,7 @@ const getArticle = (id) => dispatch => {
       dispatch(getArticleSuccess(res.data));
       return res.data
     }).catch(error => {
+      toast.error(error.toString());
       dispatch(getArticleError(error));
     })
 }
@@ -148,8 +150,8 @@ const addArticle = (payload) => dispatch => {
       toast.success("Article has been added!");
       return res;
     }).catch(error => {
+      toast.error(error.toString());
       dispatch(addArticleError(error));
-      toast.error(error);
     })
 
 }
@@ -163,8 +165,8 @@ const updateArticle = (id, payload) => dispatch => {
       toast.success("Article has been updated!");
       return res
     }).catch(error => {
+      toast.error(error.toString());
       dispatch(putArticleError(error));
-      toast.error(error);
     })
 }
 
@@ -177,8 +179,8 @@ const deleteArticle = (id) => dispatch => {
       toast.success("Article has been deleted!");
       return res
     }).catch(error => {
+      toast.error(error.toString());
       dispatch(deleteArticleError(error));
-      toast.error(error);
     })
 }
 
