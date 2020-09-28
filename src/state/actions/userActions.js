@@ -116,9 +116,9 @@ const deleteUser = (id) => dispatch => {
 
     })
     .catch(error => {
-      dispatch(deleteUserError(error));
-      toast.error(error);
-
+      toast.error(error.toString());
+      dispatch(deleteUserError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 

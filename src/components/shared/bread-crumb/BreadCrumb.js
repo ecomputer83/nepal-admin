@@ -335,7 +335,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
           }
 
           {
-            showBtn === "true" ?
+            isAdmin === "nuetral" ?
 
 
               <div className="col-5 align-self-center">

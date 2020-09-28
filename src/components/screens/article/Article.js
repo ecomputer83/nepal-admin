@@ -30,7 +30,7 @@ const Articles = () => {
       <div className="page-wrapper" style={{ display: 'block' }}>
         <div className="col-12">
           <div className="card">
-            <BreadCrumb title="Articles" isAdmin="neutral" />
+            <BreadCrumb title="Articles" articleBtn="true" />
             <div className="table-responsive">
               {pending ? <Spinner /> : null}
               <table className="table table-striped mb-0">

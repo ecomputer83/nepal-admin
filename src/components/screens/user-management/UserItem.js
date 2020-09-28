@@ -111,7 +111,7 @@ const UserItem = ({ user }) => {
                   <div className="">
                     <i className="dripicons-warning h1 text-warning"></i>
                     <p>Are you sure you want to remove this user?</p>
-                    <button type="submit" onClick={handleSubmit(deleteUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
+                    <button type="submit" onClick={deleteUser} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal">No</button>
