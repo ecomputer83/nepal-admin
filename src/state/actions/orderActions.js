@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 
 import { orderService } from 'services/order.service';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -43,6 +45,7 @@ const getAllOrders = () => async dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderError(error));
     })
 }
@@ -52,9 +55,12 @@ const markAsComplete = ({ id }) => async dispatch => {
   await orderService.markAsComplete(id)
     .then(res => {
       dispatch(orderActions.getAllOrders())
+      toast.success("Order has been marked as complete!");
+
       // return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderError(error));
     })
 }
@@ -67,8 +73,8 @@ const getOrder = ({ id }) => async dispatch => {
       return res.data
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getOrderPendingSuccess());
-      console.log('getOrder', error);
     })
 }
 

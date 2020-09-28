@@ -1,5 +1,7 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
+import { toast } from 'react-toastify';
+
 
 const axios = require('axios');
 
@@ -45,10 +47,9 @@ const addCreditError = (error) => {
   }
 }
 
-const deleteUserSuccess = (data) => {
+const deleteUserSuccess = () => {
   return {
     type: t.DELETE_USER_SUCCESS,
-    payload: data
   }
 }
 
@@ -67,7 +68,8 @@ const getAllUsers = () => dispatch => {
       return res.data;
     })
     .catch(error => {
-      dispatch(getUsersError(error));
+      toast.error(error.toString());
+      dispatch(getUsersError(error.toString()));
     })
 }
 
@@ -79,9 +81,13 @@ const addCreditLimit = (payload) => dispatch => {
     .then(res => {
       dispatch(addCreditLimitSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("Credit limit has been added!");
+
     })
     .catch(error => {
-      dispatch(addCreditError(error));
+      toast.error(error.toString());
+      dispatch(addCreditError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 
@@ -91,21 +97,29 @@ const addUser = (payload) => dispatch => {
     .then(res => {
       dispatch(addUserSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("User has been added!");
+
     })
     .catch(error => {
-      dispatch(getUsersError(error));
+      toast.error(error.toString());
+      dispatch(getUsersError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 
 const deleteUser = (id) => dispatch => {
   dispatch(getUsersPending());
-  axios.delete(`${constants.baseUrl}/Account/deleteUser/${id}`, axiosConfig)
+  axios.delete(`${constants.baseUrl}/account/removeuser/${id}`, axiosConfig)
     .then(res => {
       dispatch(deleteUserSuccess());
       dispatch(userActions.getAllUsers());
+      toast.success("User has been deleted!");
+
     })
     .catch(error => {
-      dispatch(deleteUserError(error));
+      toast.error(error.toString());
+      dispatch(deleteUserError(error.toString()));
+      dispatch(userActions.getAllUsers());
     })
 }
 

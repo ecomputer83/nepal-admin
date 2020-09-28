@@ -26,31 +26,30 @@ const UserManagement = () => {
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-        {pending ? <Spinner /> : null}
-
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="User Management" isAdmin="false" />
+              <BreadCrumb title="User Management" isAdmin="nuetral" />
               <div className="table-responsive">
+                {pending ? <Spinner /> : null}
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col">IpMan Code</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }}>IpMAN Code</th>
                       <th scope="col">Business Name</th>
                       <th scope="col">Contact Name</th>
                       <th scope="col">Phone Number</th>
                       <th scope="col">Email</th>
                       <th scope="col">Credit Limit</th>
                       <th scope="col"></th>
+                      <th scope="col"></th>
 
                     </tr>
                   </thead>
                   <tbody>
-                    {userItems}
+                    {users.length > 0 ? userItems : <tr><td>No user record available</td></tr>}
                   </tbody>
                 </table>
               </div>

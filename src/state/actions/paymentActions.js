@@ -1,6 +1,8 @@
 import * as t from './actionTypes';
 
 import { paymentService } from 'services/payment.service';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -37,6 +39,7 @@ const getPayments = () => dispatch => {
       return res.data;
     })
     .catch(error => {
+      toast.error(error.toString());
       dispatch(getPaymentError(error));
     })
 }
@@ -46,10 +49,13 @@ const approvePayment = ({ id }) => dispatch => {
   paymentService.approvePaymentOrder(id)
     .then(res => {
       dispatch(paymentActions.getPayments())
+      toast.success("Payment has been approved!");
+
       // return res.data;
     })
     .catch(error => {
-      dispatch(getPaymentError(error));
+      toast.error(error.toString());
+      dispatch(getPaymentError(error.toString()));
     })
 }
 
@@ -58,10 +64,12 @@ const rejectPayment = ({ id }) => dispatch => {
   paymentService.rejectPaymentOrder(id)
     .then(res => {
       dispatch(paymentActions.getPayments())
+      toast.success("Payment has been rejected!");
       // return res.data;
     })
     .catch(error => {
-      dispatch(getPaymentError(error));
+      toast.error(error.toString());
+      dispatch(getPaymentError(error.toString()));
     })
 }
 
