@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-
     // Feather Icon Init Js
     feather.replace();
 

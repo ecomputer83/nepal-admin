@@ -30,30 +30,31 @@ const UserManagement = () => {
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-        {pending ? <Spinner /> : null}
-
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="User Management" isAdmin="false" />
-              <div className="table-responsive">
-                <table className="table table-striped mb-0 sortable">
+              <BreadCrumb title="User Management" isAdmin="false" showBtn="true" />
+              <div id="zero_config_wrapper" className="dataTables_wrapper container-fluid dt-bootstrap4">
+                {pending ? <Spinner /> : null}
+                <table id="zero_config" className="table table-striped no-wrap dataTable">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col" onClick={() => requestSort('ipmanCode')} className={getClassNamesFor('ipmanCode')}>IpMan Code</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }} onClick={() => requestSort('ipmanCode')} className={getClassNamesFor('ipmanCode')}>IpMAN Code</th>
                       <th scope="col" onClick={() => requestSort('businessName')} className={getClassNamesFor('businessName')}>Business Name</th>
                       <th scope="col" onClick={() => requestSort('contactName')} className={getClassNamesFor('contactName')}>Contact Name</th>
                       <th scope="col" onClick={() => requestSort('phoneNumber')} className={getClassNamesFor('phoneNumber')}>Phone Number</th>
                       <th scope="col" onClick={() => requestSort('email')} className={getClassNamesFor('email')}>Email</th>
                       <th scope="col" onClick={() => requestSort('creditLimit')} className={getClassNamesFor('creditLimit')}>Credit Limit</th>
+
                       <th scope="col"></th>
+                      <th scope="col"></th>
+
                     </tr>
                   </thead>
                   <tbody>
-                    {userItems}
+                    {users.length > 0 ? userItems : <tr><td>No user record available</td></tr>}
                   </tbody>
                 </table>
               </div>
@@ -61,6 +62,9 @@ const UserManagement = () => {
           </div>
         </div>
       </div>
+      <script>
+        $('#zero_config').DataTable();
+      </script>
     </div>
   )
 }

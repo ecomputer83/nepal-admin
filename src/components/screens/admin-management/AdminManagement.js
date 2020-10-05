@@ -31,8 +31,6 @@ const AdminManagement = () => {
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-        {pending ? <Spinner /> : null}
-
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
@@ -40,20 +38,21 @@ const AdminManagement = () => {
             <div className="card">
               <BreadCrumb title="Admin Management" isAdmin="true" />
               <div className="table-responsive">
-                <table className="table table-striped mb-0">
+                {pending ? <Spinner /> : null}
+                <table className="table table-striped mb-0" id="myTable">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col" onClick={() => requestSort('contactName')} className={getClassNamesFor('contactName')}>Admin Name</th>
+                      <th style={{ padding: '1rem 1rem 1rem 3rem' }} onClick={() => requestSort('contactName')} className={getClassNamesFor('contactName')}>Admin Name</th>
                       <th scope="col" onClick={() => requestSort('phoneNumber')} className={getClassNamesFor('phoneNumber')}>Phone Number</th>
                       <th scope="col" onClick={() => requestSort('email')} className={getClassNamesFor('email')}>Email</th>
                       <th scope="col" onClick={() => requestSort('role')} className={getClassNamesFor('role')}>Role</th>
-                      {/* <th scope="col"></th> */}
+
+                      <th scope="col"></th>
 
                     </tr>
                   </thead>
                   <tbody>
-                    {adminItems}
+                    {allAdmin.length > 0 ? adminItems : <tr><td>No admin record available</td></tr>}
                   </tbody>
                 </table>
               </div>

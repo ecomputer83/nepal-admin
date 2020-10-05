@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import HeaderNav from 'components/shared/header-nav/HeaderNav';
 import LeftNav from 'components/shared/left-nav/LeftNav';
 import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
-import OrderItem from './OrderItem';
+import OrderItem from './PendingOrderItem';
 
 import { orderActions } from 'state/actions/orderActions';
 import Spinner from 'components/shared/spinner/Spinner';
 import { useSortableData } from 'utils/sorter';
 
 
-const OrderManagement = () => {
+const PendingOrderManagement = () => {
 
   const dispatch = useDispatch();
   const oReducer = useSelector(state => state.orderReducer);
@@ -26,7 +26,7 @@ const OrderManagement = () => {
   const pending = oReducer.pending;
 
   useEffect(() => {
-    dispatch(orderActions.getAllOrders())
+    dispatch(orderActions.getPendingOrders())
   }, [dispatch])
 
 
@@ -41,7 +41,7 @@ const OrderManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Confirm Orders" isAdmin="neutral" />
+              <BreadCrumb title="Orders awaiting payment submission" isAdmin="neutral" />
               {pending ? <Spinner /> : null}
               <div className="table-responsive">
                 <table className="table table-striped mb-0" id="myTable">
@@ -69,4 +69,4 @@ const OrderManagement = () => {
   )
 }
 
-export default OrderManagement;
+export default PendingOrderManagement;

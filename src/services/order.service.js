@@ -13,6 +13,15 @@ const getAllOrders = () => {
     })
 }
 
+const getPendingOrders = () => {
+  return axios.get(`${baseUrl}/Order/PendingOrders`, axiosConfig)
+    .then(response => {
+      return response;
+    }).catch(err => {
+      return err
+    })
+}
+
 const getOrder = (id) => {
   return axios.get(`${baseUrl}/Order/${id}`, axiosConfig)
     .then(response => {
@@ -33,6 +42,7 @@ const markAsComplete = (id) => {
 
 export const orderService = {
   getAllOrders,
+  getPendingOrders,
   markAsComplete,
   getOrder
 };

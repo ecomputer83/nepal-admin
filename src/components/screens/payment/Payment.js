@@ -42,9 +42,9 @@ const PaymentManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Payment Management" isAdmin="neutral" />
+              <BreadCrumb title="Orders awaiting Payment confirmation" isAdmin="neutral"/>
               <div className="table-responsive">
-                <table className="table table-striped mb-0 sortable">
+                <table className="table table-striped mb-0" id="myTable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>

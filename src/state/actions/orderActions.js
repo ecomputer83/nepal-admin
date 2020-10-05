@@ -51,6 +51,19 @@ const getAllOrders = () => async dispatch => {
     })
 }
 
+const getPendingOrders = () => async dispatch => {
+  // dispatch(getOrderPending());
+  await orderService.getPendingOrders()
+    .then(res => {
+      dispatch(getOrderSuccess(res.data));
+      return res.data;
+    })
+    .catch(error => {
+      dispatch(getOrderError(error));
+    })
+}
+
+
 const markAsComplete = ({ id }) => async dispatch => {
   dispatch(getOrderPending());
   await orderService.markAsComplete(id)
@@ -81,6 +94,7 @@ const getOrder = ({ id }) => async dispatch => {
 
 export const orderActions = {
   getAllOrders,
+  getPendingOrders,
   markAsComplete,
   getOrder
 };
