@@ -29,7 +29,7 @@ const getCreditApprovalError = (error) => {
 //#region 
 
 const getCreditApprovals = () => dispatch => {
-  dispatch(getCreditApprovalPending());
+  // dispatch(getCreditApprovalPending());
   creditApprovalService.getAllCreditApprovals()
     .then(res => {
       dispatch(getCreditApprovalSuccess(res.data));

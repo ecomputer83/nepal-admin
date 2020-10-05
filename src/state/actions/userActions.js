@@ -59,7 +59,7 @@ const deleteUserError = (error) => {
 }
 
 const getAllUsers = () => dispatch => {
-  dispatch(getUsersPending());
+  // dispatch(getUsersPending());
   axios.get(`${baseUrl}/account/allusers`, axiosConfig)
     .then(res => {
       dispatch(getAllUsersSuccess(res.data));

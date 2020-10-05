@@ -28,7 +28,7 @@ const fetchUserToken = (userInfo) => dispatch => {
       }
     })
     .catch((err) => {
-      // alert('Login Failed', 'Some error occured, please retry');
+      alert('Login Failed', 'Username or Password is incorrect');
       console.log(err);
     });
 }

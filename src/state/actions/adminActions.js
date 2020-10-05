@@ -51,7 +51,7 @@ function addAdminError(error) {
 }
 
 const getAllAdmin = () => dispatch => {
-  dispatch(getAllAdminPending());
+  // dispatch(getAllAdminPending());
   axios.get(`${baseUrl}/Account/AllAdminUsers`, axiosConfig)
     .then(res => {
       dispatch(getAllAdminSuccess(res.data));

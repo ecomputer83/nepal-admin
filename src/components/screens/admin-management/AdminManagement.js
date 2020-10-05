@@ -35,7 +35,7 @@ const AdminManagement = () => {
               <BreadCrumb title="Admin Management" isAdmin="true" />
               <div className="table-responsive">
                 {pending ? <Spinner /> : null}
-                <table className="table table-striped mb-0">
+                <table className="table table-striped mb-0" id="myTable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 3rem' }}>Admin Name</th>

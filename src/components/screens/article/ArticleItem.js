@@ -27,7 +27,11 @@ const ArticleItem = ({ article }) => {
   const updateArticle = (data, e) => {
     const id = newArticle.id;
     data.imageFile = picture;
-    dispatch(articleActions.updateArticle(id, data));
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("body", data.body);
+    formData.append("imageFile", data.imageFile);
+    dispatch(articleActions.updateArticle(id, formData));
     reset();
   }
 
@@ -137,7 +141,7 @@ const ArticleItem = ({ article }) => {
                       </div>
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
-                          <button className="btn btn-primary" disabled={!formState.isValid}
+                          <button className="btn btn-primary"
                             onClick={handleSubmit(updateArticle)} style={{ marginRight: '20px' }}
                             data-dismiss="modal" type="submit">Submit</button>
                           <button className="btn btn-danger" data-dismiss="modal" type="submit">Cancel</button>

@@ -157,7 +157,7 @@ const OrderItem = ({ order }) => {
                   </div>
                 </div>
               </div>
-              <div className="table-responsive">
+              <div className="table-responsive" style={{height: '13em'}}>
                 <table className="table table-striped mb-0">
                   <thead className="bg-primary text-white">
                     <tr>

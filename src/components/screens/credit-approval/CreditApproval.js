@@ -33,9 +33,9 @@ const CreditApproval = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Credit Approval" />
+              <BreadCrumb title="Credit Approval" isAdmin="neutral"/>
               <div className="table-responsive">
-                <table className="table table-striped mb-0">
+                <table className="table table-striped mb-0" id="myTable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0rem' }} scope="col"></th>

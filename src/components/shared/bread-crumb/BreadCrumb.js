@@ -373,10 +373,9 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                               })} />
                             {errors.businessName && <p className="error">{errors.businessName.message}</p>}
                           </div>
+
                         </div>
-
-                      </div>
-
+                          </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
@@ -388,7 +387,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                             {errors.rcNumber && <p className="error">{errors.rcNumber.message}</p>}
 
                           </div>
-                        </div>
+                              </div>
 
                         <div className="col-md-6">
                           <div className="form-group">
@@ -400,8 +399,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                             {errors.address && <p className="error">{errors.address.message}</p>}
                           </div>
                         </div>
-                      </div>
-
+                        </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
@@ -416,8 +414,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                               })} />
                             {errors.email && <p className="error">{errors.email.message}</p>}
                           </div>
-                        </div>
-
+                              </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label htmlFor="username">User Name</label>
@@ -428,8 +425,7 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                             {errors.contactName && <p className="error">{errors.contactName.message}</p>}
                           </div>
                         </div>
-                      </div>
-
+                              </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
@@ -448,10 +444,12 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                           <button className="btn btn-danger" type="submit">Cancel</button>
                         </div>
                       </div>
+
                     </form>
                   </Modal>
                 </div>
               </div>
+              
               :
               null
           }
@@ -523,12 +521,14 @@ const BreadCrumb = ({ title, isAdmin, showBtn, articleBtn }) => {
                   </Modal>
                 </div>
               </div>
+              
               :
               null
           }
         </div>
       </div>
     </div >
+
   )
 }
 

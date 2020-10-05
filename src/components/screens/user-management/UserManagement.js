@@ -32,9 +32,9 @@ const UserManagement = () => {
           <div className="col-12">
             <div className="card">
               <BreadCrumb title="User Management" isAdmin="false" showBtn="true" />
-              <div className="table-responsive">
+              <div id="zero_config_wrapper" className="dataTables_wrapper container-fluid dt-bootstrap4">
                 {pending ? <Spinner /> : null}
-                <table className="table table-striped mb-0">
+                <table id="zero_config" className="table table-striped no-wrap dataTable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 3rem' }}>IpMAN Code</th>
@@ -57,6 +57,9 @@ const UserManagement = () => {
           </div>
         </div>
       </div>
+      <script>
+      $('#zero_config').DataTable();
+      </script>
     </div>
   )
 
