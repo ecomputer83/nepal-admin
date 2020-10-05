@@ -4,52 +4,52 @@ import { useDispatch, useSelector } from 'react-redux';
 import HeaderNav from 'components/shared/header-nav/HeaderNav';
 import LeftNav from 'components/shared/left-nav/LeftNav';
 import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
-import PaymentItem from './PaymentItem';
+import OrderItem from './PendingOrderItem';
 
-import { paymentActions } from 'state/actions/paymentActions';
+import { orderActions } from 'state/actions/orderActions';
 import Spinner from 'components/shared/spinner/Spinner';
 
 
-const PaymentManagement = () => {
+const PendingOrderManagement = () => {
 
   const dispatch = useDispatch();
-  const pReducer = useSelector(state => state.paymentReducer);
-  const payments = pReducer.paymentOrders;
-  const pending = pReducer.pending;
+  const oReducer = useSelector(state => state.orderReducer);
+  const orders = oReducer.orders;
+  const pending = oReducer.pending;
 
   useEffect(() => {
-    dispatch(paymentActions.getPayments())
+    dispatch(orderActions.getPendingOrders())
   }, [dispatch])
 
 
-  const paymentItems = payments.map((p) => <PaymentItem key={p.id} payment={p} />);
+  const orderItems = orders.map((o) => <OrderItem key={o.orderId} order={o} />);
 
   return (
     <div>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-        {pending ? <Spinner /> : null}
         <HeaderNav />
         <LeftNav />
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Orders awaiting Payment confirmation" isAdmin="neutral"/>
+              <BreadCrumb title="Orders awaiting payment submission" isAdmin="neutral" />
+              {pending ? <Spinner /> : null}
               <div className="table-responsive">
                 <table className="table table-striped mb-0" id="myTable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col">Payment Date</th>
-                      <th scope="col">Payment No</th>
+                      <th scope="col">Order Date</th>
+                      <th scope="col">Order Id</th>
+                      <th scope="col">Quantity</th>
                       <th scope="col">Total Amount (#)</th>
-                      <th scope="col">Bank Name</th>
-                      <th scope="col">Teller No</th>
+                      <th scope="col">Order No</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {payments.length > 0 ? paymentItems : <tr><td></td><td>No record available</td></tr>}
+                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>
@@ -61,4 +61,4 @@ const PaymentManagement = () => {
   )
 }
 
-export default PaymentManagement;
+export default PendingOrderManagement;

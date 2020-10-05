@@ -10052,7 +10052,7 @@ sidebar navigation
   align-items: center;
   line-height: 27px;
   opacity: .7;
-  margin-right: 17px;
+  /* margin-right: 17px; */
 }
 
 .sidebar-nav #sidebarnav .sidebar-item .sidebar-link .feather-icon, .sidebar-nav #sidebarnav .sidebar-item .sidebar-link i {

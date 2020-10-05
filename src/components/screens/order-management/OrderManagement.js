@@ -33,7 +33,7 @@ const OrderManagement = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Order Management" isAdmin="neutral" />
+              <BreadCrumb title="Confirm Orders" isAdmin="neutral" />
               {pending ? <Spinner /> : null}
               <div className="table-responsive">
                 <table className="table table-striped mb-0" id="myTable">
