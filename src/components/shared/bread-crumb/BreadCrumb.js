@@ -5,12 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'state/actions/userActions';
 import { adminActions } from 'state/actions/adminActions';
 
-
-
-
-
-
-
 const customStyles = {
   content: {
     top: '45%',
@@ -45,8 +39,6 @@ const BreadCrumb = ({ title, isAdmin }) => {
   }, [dispatch])
 
   // const adminRoles = role.map((x) => <AdminItem key={x.id} admin={x} />);
-
-
 
   var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -207,17 +199,13 @@ const BreadCrumb = ({ title, isAdmin }) => {
                         </div>
                       </div>
 
-
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
                           <button className="btn btn-primary" onClick={handleSubmit(addAdmin)} style={{ marginRight: '20px' }} type="submit">Add Admin</button>
                           <button className="btn btn-danger" type="submit">Cancel</button>
                         </div>
                       </div>
-
                     </form>
-
-
                   </Modal>
 
                   <Modal
@@ -239,29 +227,19 @@ const BreadCrumb = ({ title, isAdmin }) => {
                               required="" placeholder="Enter Role" name="role" ref={register} />
                           </div>
                         </div>
-
-
                       </div>
-
-
-
-
-
                       <div className="form-group text-center">
                         <div className="customize-input float-right">
                           <button className="btn btn-primary" onClick={handleSubmit(addRole)} style={{ marginRight: '20px' }} type="submit">Add Role</button>
                           <button className="btn btn-danger" type="submit">Cancel</button>
                         </div>
                       </div>
-
                     </form>
-
-
                   </Modal>
                 </div>
               </div>
               :
-              isAdmin == "neutral" ?
+              isAdmin === "neutral" ?
                 <div className="col-5 align-self-center">
                   <div className="customize-input float-right">
                   </div>

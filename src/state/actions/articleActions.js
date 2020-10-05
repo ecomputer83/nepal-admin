@@ -16,11 +16,11 @@ const getArticlesSuccess = (data) => {
   }
 }
 
-const getArticlesPending = () => {
-  return {
-    type: t.GET_ARTICLES_PENDING
-  }
-}
+// const getArticlesPending = () => {
+//   return {
+//     type: t.GET_ARTICLES_PENDING
+//   }
+// }
 
 const getArticlesError = (error) => {
   return {

@@ -8,12 +8,20 @@ import BreadCrumb from 'components/shared/bread-crumb/BreadCrumb';
 
 import { creditApprovalActions } from 'state/actions/creditApprovalActions';
 import Spinner from 'components/shared/spinner/Spinner';
+import { useSortableData } from 'utils/sorter';
 
 
 const CreditApproval = () => {
   const dispatch = useDispatch();
   const cdReducer = useSelector(state => state.creditApprovalReducer);
   const creditApprovals = cdReducer.creditApprovals;
+  const { items, requestSort, sortConfig } = useSortableData(creditApprovals);
+  const getClassNamesFor = (name) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
   const pending = cdReducer.pending;
 
   useEffect(() => {
@@ -21,7 +29,8 @@ const CreditApproval = () => {
   }, [dispatch])
 
 
-  const creditApprovalItems = creditApprovals.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
+  const eventPage = 'creditApproval';
+  const creditApprovalItems = items.map((ca) => <CreditApprovalItem key={ca.id} creditApproval={ca} />);
 
   return (
     <div>
@@ -33,23 +42,23 @@ const CreditApproval = () => {
         <div className="page-wrapper" style={{ display: 'block' }}>
           <div className="col-12">
             <div className="card">
-              <BreadCrumb title="Credit Approval" isAdmin="neutral"/>
+              <BreadCrumb title="Credit Approval" isAdmin="neutral" />
               <div className="table-responsive">
-                <table className="table table-striped mb-0">
+                <table className="table table-striped mb-0 sortable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0rem' }} scope="col"></th>
-                      <th scope="col">IpMan Code</th>
-                      <th scope="col">Business Name</th>
-                      <th scope="col">Order Date</th>
-                      <th scope="col">Order No</th>
-                      <th scope="col">Total Amount (#)</th>
-                      <th scope="col">Credit Balance</th>
+                      <th scope="col" onClick={() => requestSort('ipmanCode', eventPage)} className={getClassNamesFor('ipmanCode')}>IpMan Code</th>
+                      <th scope="col" onClick={() => requestSort('businessName', eventPage)} className={getClassNamesFor('businessName')}>Business Name</th>
+                      <th scope="col" onClick={() => requestSort('orderDate', eventPage)} className={getClassNamesFor('orderDate')}>Order Date</th>
+                      <th scope="col" onClick={() => requestSort('orderNo', eventPage)} className={getClassNamesFor('orderNo')}>Order No</th>
+                      <th scope="col" onClick={() => requestSort('totalAmount', eventPage)} className={getClassNamesFor('totalAmount')}>Total Amount (#)</th>
+                      <th scope="col" onClick={() => requestSort('creditBalance', eventPage)} className={getClassNamesFor('creditBalance')}>Credit Balance</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {creditApprovals.length > 0 ? creditApprovalItems : <tr><td>No record available</td></tr>}
+                    {items.length > 0 ? creditApprovalItems : <tr><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>

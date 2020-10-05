@@ -31,7 +31,6 @@ const cStyle = {
   overlay: { backgroundColor: 'rgba(127, 122, 122, 0.62)' },
 };
 
-let vv;
 let programItem;
 const OrderItem = ({ order }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -41,7 +40,7 @@ const OrderItem = ({ order }) => {
 
   const formatDate = (orderDate) => {
     var date = new Date(orderDate);
-    return orderDate = format(new Date(orderDate), 'dd-MM-yyyy');
+    return orderDate = format(date, 'dd-MM-yyyy');
   }
 
   const dispatch = useDispatch();

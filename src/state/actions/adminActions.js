@@ -1,5 +1,6 @@
 import * as t from './actionTypes';
 import { constants } from 'utils/constants';
+import history from 'utils/history';
 
 const axios = require('axios');
 const baseUrl = constants.baseUrl;
@@ -17,11 +18,11 @@ function getAdminRoleSuccess(data) {
     payload: data
   }
 }
-function getAllAdminPending() {
-  return {
-    type: t.GET_ALLADMIN_PENDING
-  }
-}
+// function getAllAdminPending() {
+//   return {
+//     type: t.GET_ALLADMIN_PENDING
+//   }
+// }
 function getAllAdminError(error) {
   return {
     type: t.GET_ALLADMIN_ERROR,
@@ -83,6 +84,10 @@ const getAdminRole = () => dispatch => {
     })
     .catch(error => {
       dispatch(getAllAdminError(error));
+      if (error.toString().includes("401")) {
+        console.log("unAuthorized", error);
+        history.push('/')
+      }
     });
 }
 

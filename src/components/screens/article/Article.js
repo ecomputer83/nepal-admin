@@ -33,7 +33,7 @@ const Articles = () => {
           <div className="card">
             <BreadCrumb title="Articles" isAdmin="neutral"/>
             <div className="table-responsive">
-              <table className="table table-striped mb-0">
+              <table className="table table-striped mb-0 sortable">
                 <thead className="bg-primary text-white">
                   <tr>
                     <th style={{ padding: '1rem 1rem 1rem 3rem' }} scope="col">Business Name</th>

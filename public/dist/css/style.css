@@ -1065,11 +1065,21 @@ pre {
     vertical-align: top;
     border-top: 1px solid #e8eef3; }
   .table thead th {
+    cursor: pointer;
     vertical-align: bottom;
     border-bottom: 2px solid #e8eef3; }
   .table tbody + tbody {
     border-top: 2px solid #e8eef3; }
-
+  .table thead th.ascending::after {
+      content: '\25bc';
+      display: inline-block;
+      margin-left: 1em;
+    }
+   .table thead th.descending::after {
+      content: '\25B2';
+      display: inline-block;
+      margin-left: 1em;
+    }
 .table-sm th,
 .table-sm td {
   padding: 0.3rem; }

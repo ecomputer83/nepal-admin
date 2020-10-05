@@ -1,5 +1,5 @@
 import * as t from './actionTypes';
-
+import history from 'utils/history';
 import { orderService } from 'services/order.service';
 
 
@@ -43,7 +43,11 @@ const getAllOrders = () => async dispatch => {
       return res.data;
     })
     .catch(error => {
+      console.log("unAuthorized", error);
       dispatch(getOrderError(error));
+      if (error.toString().includes("401")) {
+        history.push('/')
+      }
     })
 }
 

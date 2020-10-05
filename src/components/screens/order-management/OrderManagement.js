@@ -8,6 +8,7 @@ import OrderItem from './OrderItem';
 
 import { orderActions } from 'state/actions/orderActions';
 import Spinner from 'components/shared/spinner/Spinner';
+import { useSortableData } from 'utils/sorter';
 
 
 const OrderManagement = () => {
@@ -15,6 +16,13 @@ const OrderManagement = () => {
   const dispatch = useDispatch();
   const oReducer = useSelector(state => state.orderReducer);
   const orders = oReducer.orders;
+  const { items, requestSort, sortConfig } = useSortableData(orders);
+  const getClassNamesFor = (name) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
   const pending = oReducer.pending;
 
   useEffect(() => {
@@ -22,7 +30,7 @@ const OrderManagement = () => {
   }, [dispatch])
 
 
-  const orderItems = orders.map((o) => <OrderItem key={o.orderId} order={o} />);
+  const orderItems = items.map((o) => <OrderItem key={o.orderId} order={o} />);
 
   return (
     <div>
@@ -36,20 +44,20 @@ const OrderManagement = () => {
               <BreadCrumb title="Order Management" isAdmin="neutral" />
               {pending ? <Spinner /> : null}
               <div className="table-responsive">
-                <table className="table table-striped mb-0">
+                <table className="table table-striped mb-0 sortable">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col">Order Date</th>
-                      <th scope="col">Order Id</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Total Amount (#)</th>
-                      <th scope="col">Order No</th>
+                      <th scope="col" onClick={() => requestSort('orderDate')} className={getClassNamesFor('orderDate')}>Order Date</th>
+                      <th scope="col" onClick={() => requestSort('orderId')} className={getClassNamesFor('orderId')}>Order Id</th>
+                      <th scope="col" onClick={() => requestSort('quantity')} className={getClassNamesFor('quantity')}>Quantity</th>
+                      <th scope="col" onClick={() => requestSort('totalAmount')} className={getClassNamesFor('totalAmount')}>Total Amount (#)</th>
+                      <th scope="col" onClick={() => requestSort('orderNo')} className={getClassNamesFor('orderNo')}>Order No</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
+                    {items.length > 0 ? orderItems : <tr><td></td><td>No record available</td></tr>}
                   </tbody>
                 </table>
               </div>

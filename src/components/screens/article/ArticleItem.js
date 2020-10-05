@@ -1,28 +1,27 @@
 import React from 'react';
-import { format } from "date-fns";
 
 const ArticleItem = ({ article }) => {
 
   // var date = new Date(creditApproval.order.orderDate);
   // var orderDate = format(date, 'dd-MM-yyyy');
 
-  const approve = () => {
-    var r = window.confirm("Are you sure you want to approve the credit request");
-    if (r === true) {
-      //
-    } else {
-      //
-    }
-  }
+  // const approve = () => {
+  //   var r = window.confirm("Are you sure you want to approve the credit request");
+  //   if (r === true) {
+  //     //
+  //   } else {
+  //     //
+  //   }
+  // }
 
-  const reject = () => {
-    var r = window.confirm("Are you sure you want to reject the credit request",);
-    if (r === true) {
-      //
-    } else {
-      //
-    }
-  }
+  // const reject = () => {
+  //   var r = window.confirm("Are you sure you want to reject the credit request",);
+  //   if (r === true) {
+  //     //
+  //   } else {
+  //     //
+  //   }
+  // }
 
   return (
     <>

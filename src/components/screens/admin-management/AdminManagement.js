@@ -6,22 +6,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'components/shared/spinner/Spinner';
 import { adminActions } from 'state/actions/adminActions';
 import AdminItem from './AdminItem';
-
-
-
+import { useSortableData } from 'utils/sorter';
 
 const AdminManagement = () => {
   const dispatch = useDispatch();
   const reducer = useSelector(state => state.adminReducer);
   const allAdmin = reducer.allAdmin;
+  const { items, requestSort, sortConfig } = useSortableData(allAdmin);
+  const getClassNamesFor = (name) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
   const pending = reducer.pending;
-
 
   useEffect(() => {
     dispatch(adminActions.getAllAdmin())
   }, [dispatch])
 
-  const adminItems = allAdmin.map((x) => <AdminItem key={x.id} admin={x} />);
+  const adminItems = items.map((x) => <AdminItem key={x.id} admin={x} />);
   return (
 
     <div>
@@ -40,10 +44,10 @@ const AdminManagement = () => {
                   <thead className="bg-primary text-white">
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
-                      <th scope="col">Admin Name</th>
-                      <th scope="col">Phone Number</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Role</th>
+                      <th scope="col" onClick={() => requestSort('contactName')} className={getClassNamesFor('contactName')}>Admin Name</th>
+                      <th scope="col" onClick={() => requestSort('phoneNumber')} className={getClassNamesFor('phoneNumber')}>Phone Number</th>
+                      <th scope="col" onClick={() => requestSort('email')} className={getClassNamesFor('email')}>Email</th>
+                      <th scope="col" onClick={() => requestSort('role')} className={getClassNamesFor('role')}>Role</th>
                       {/* <th scope="col"></th> */}
 
                     </tr>
