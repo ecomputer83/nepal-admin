@@ -34,6 +34,11 @@ const UserItem = ({ user }) => {
     dispatch(userActions.deleteUser(userId));
   }
 
+  const approveUser = () => {
+    const userId = localStorage.getItem('userId');
+    dispatch(userActions.approveUser(userId));
+  }
+
 
 
 
@@ -59,6 +64,13 @@ const UserItem = ({ user }) => {
               <i className="fa fa-plus">
               </i>
             </button> : <span />}
+            {user.userNo == null ?
+            <button type="button" className="btn btn-success btn-circle" data-tip="Approve User"
+              data-for='toolTip3' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
+              data-target="#approve-alert-modal" onClick={() => handleModalOpen(user.id)}>
+              <i className="fa fa-check">
+              </i>
+            </button> : <span />} 
           <button type="button" className="btn btn-danger btn-circle" data-tip="Remove User"
             data-for='toolTip2' data-place='top' style={{ marginRight: '10px' }} data-toggle="modal"
             data-target="#warning-alert-modal" onClick={() => handleModalOpen(user.id)}>
@@ -111,17 +123,40 @@ const UserItem = ({ user }) => {
                 <div className="modal-body center-item">
                   <div className="">
                     <i className="dripicons-warning h1 text-warning"></i>
+                    <form className="pl-3 pr-3" >
                     <p>Are you sure you want to remove this user?</p>
+                    
+                    </form>
                     <button type="submit" onClick={handleSubmit(deleteUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal">No</button>
-
+                      
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div id="approve-alert-modal" className="modal fade" tabIndex="-1" role="dialog"
+            aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-body center-item">
+                  <div className="">
+                  <form className="pl-3 pr-3" >
+                    <p>Are you sure you want to approve this user?</p>
+                    </form>
+                    <button type="submit" onClick={handleSubmit(approveUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
+                      data-dismiss="modal" > Yes</button>
+                    <button type="button" className="btn btn-outline-info submit-btn alert-btn"
+                      data-dismiss="modal">No</button>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
         </td>
       </tr>
     </>

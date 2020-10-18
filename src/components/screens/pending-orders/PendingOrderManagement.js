@@ -49,9 +49,10 @@ const PendingOrderManagement = () => {
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
                       <th scope="col" onClick={() => requestSort('orderDate')} className={getClassNamesFor('orderDate')}>Order Date</th>
-                      <th scope="col" onClick={() => requestSort('orderId')} className={getClassNamesFor('orderId')}>Order Id</th>
+                      <th scope="col" onClick={() => requestSort('productName')} className={getClassNamesFor('productName')}>Product</th>
+                      <th scope="col" onClick={() => requestSort('depotName')} className={getClassNamesFor('depotName')}>Depot</th>
                       <th scope="col" onClick={() => requestSort('quantity')} className={getClassNamesFor('quantity')}>Quantity</th>
-                      <th scope="col" onClick={() => requestSort('totalAmount')} className={getClassNamesFor('totalAmount')}>Total Amount (#)</th>
+                      <th scope="col" onClick={() => requestSort('totalAmount')} className={getClassNamesFor('totalAmount')}>Total Amount (₦)</th>
                       <th scope="col" onClick={() => requestSort('orderNo')} className={getClassNamesFor('orderNo')}>Order No</th>
                       <th scope="col"></th>
                     </tr>

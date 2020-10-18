@@ -63,7 +63,7 @@ const OrderItem = ({ order }) => {
             <tr key={p.id}>
               <td>{p.truckNo}</td>
               <td>{p.destination}</td>
-              <td>{p.quantity}</td>
+              <td>{p.quantity.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
             </tr >
           )
         } else {
@@ -145,13 +145,27 @@ const OrderItem = ({ order }) => {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="totalamount">Total Amount</label>
-                      <input className="form-control" type="text" id="totalamount" value={singleOrder.totalAmount} disabled />
+                      <input className="form-control" type="text" id="totalamount" value={'₦' +singleOrder.totalAmount} disabled />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="orderno">Order No</label>
                       <input className="form-control" type="text" id="orderno" value={singleOrder.orderNo} disabled />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="orderno">Product</label>
+                      <input className="form-control" type="text" id="product" value={singleOrder.productName} disabled />
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="totalamount">Depot</label>
+                      <input className="form-control" type="text" id="totalamount" value={singleOrder.depotName} disabled />
                     </div>
                   </div>
                 </div>
@@ -178,13 +192,14 @@ const OrderItem = ({ order }) => {
           }
         </td>
         <td>{formatDate(order.orderDate)}</td>
-        <td>{order.orderId}</td>
-        <td>{order.quantity}</td>
-        <td>{order.totalAmount}</td>
+        <td>{order.productName}</td>
+        <td>{order.depotName}</td>
+        <td style={{'textAlign': 'right'}}>{order.quantity.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
+        <td style={{'textAlign': 'right'}}>{order.totalAmount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
         <td>{order.orderNo}</td>
         <td>
           <button type="button" onClick={() => getOrder(order.orderId, 'details')} data-tip="View Details" data-for='toolTip1' className="btn btn-info btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-list"></i></button>
-          <button type="button" onClick={() => handleClickOpen(order.orderId, 'markComplete')} data-tip="Mark As Completed" data-for='toolTip2' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-check"></i></button>
+          {/* <button type="button" onClick={() => handleClickOpen(order.orderId, 'markComplete')} data-tip="Mark As Completed" data-for='toolTip2' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fas fa-check"></i></button> */}
           <ReactTooltip id="toolTip1" />
           <ReactTooltip id="toolTip2" />
         </td>

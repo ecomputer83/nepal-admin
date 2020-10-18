@@ -41,6 +41,16 @@ const userReducer = (state = defaultState, action) => {
         ...state,
         error: action.error
       }
+      case t.APPROVE_USER_SUCCESS:
+        return {
+          ...state,
+          pending: false
+        }
+      case t.APPROVE_USER_ERROR:
+        return {
+          ...state,
+          error: action.error
+        }
     default:
       return state;
   }

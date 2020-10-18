@@ -75,7 +75,7 @@ const PaymentItem = ({ payment }) => {
         </td>
         <td>{paymentDate}</td>
         <td>{payment.order.orderNo}</td>
-        <td>{payment.credit.totalAmount}</td>
+        <td>₦{payment.credit.totalAmount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
         <td>{payment.credit.name}</td>
         <td>{payment.credit.reference}</td>
         <td>

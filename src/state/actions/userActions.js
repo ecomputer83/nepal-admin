@@ -57,7 +57,18 @@ const deleteUserError = (error) => {
     error
   }
 }
+const approveUserSuccess = () => {
+  return {
+    type: t.APPROVE_USER_SUCCESS,
+  }
+}
 
+const approveUserError = (error) => {
+  return {
+    type: t.APPROVE_USER_ERROR,
+    error
+  }
+}
 const getAllUsers = () => dispatch => {
   // dispatch(getUsersPending());
   axios.get(`${baseUrl}/account/allusers`, axiosConfig)
@@ -108,10 +119,23 @@ const deleteUser = (id) => dispatch => {
     })
 }
 
+const approveUser = (id) => dispatch => {
+  dispatch(getUsersPending());
+  axios.get(`${constants.baseUrl}/account/approve/${id}`, axiosConfig)
+    .then(res => {
+      dispatch(approveUserSuccess());
+      dispatch(userActions.getAllUsers());
+    })
+    .catch(error => {
+      dispatch(approveUserError(error));
+    })
+}
+
 
 export const userActions = {
   getAllUsers,
   addCreditLimit,
   addUser,
-  deleteUser
+  deleteUser,
+  approveUser
 };

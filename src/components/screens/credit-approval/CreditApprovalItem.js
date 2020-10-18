@@ -76,8 +76,8 @@ const CreditApprovalItem = ({ creditApproval }) => {
         <td>{creditApproval.order.user.businessName}</td>
         <td>{orderDate}</td>
         <td>{creditApproval.order.orderNo}</td>
-        <td>{creditApproval.credit.totalAmount}</td>
-        <td>{creditApproval.order.user.creditBalance}</td>
+        <td style={{'textAlign': 'right'}}>{creditApproval.credit.totalAmount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
+        <td style={{'textAlign': 'right'}}>{creditApproval.order.user.creditBalance.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
         <td>
           <button type="button" onClick={() => handleClickOpen(creditApproval.id, 'approve')} data-tip="Approve Credit" data-for='toolTip1' className="btn btn-success btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-check"></i></button>
           <button type="button" onClick={() => handleClickOpen(creditApproval.id, 'reject')} data-tip="Reject Credit" data-for='toolTip2' className="btn btn-danger btn-circle" style={{ marginRight: '10px' }} ><i className="fa fa-times"></i></button>

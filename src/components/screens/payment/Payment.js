@@ -49,7 +49,7 @@ const PaymentManagement = () => {
                     <tr>
                       <th style={{ padding: '1rem 1rem 1rem 0' }}></th>
                       <th scope="col" onClick={() => requestSort('orderDate', eventPage)} className={getClassNamesFor('orderDate')}>Payment Date</th>
-                      <th scope="col" onClick={() => requestSort('orderNo', eventPage)} className={getClassNamesFor('orderNo')}>Payment No</th>
+                      <th scope="col" onClick={() => requestSort('orderNo', eventPage)} className={getClassNamesFor('orderNo')}>Order No</th>
                       <th scope="col" onClick={() => requestSort('totalAmount', eventPage)} className={getClassNamesFor('totalAmount')}>Total Amount (#)</th>
                       <th scope="col" onClick={() => requestSort('name', eventPage)} className={getClassNamesFor('name')}>Bank Name</th>
                       <th scope="col" onClick={() => requestSort('reference', eventPage)} className={getClassNamesFor('reference')}>Teller No</th>
