@@ -19,6 +19,7 @@ const UserItem = ({ user }) => {
   const { register, handleSubmit, errors, formState } = useForm({
     mode: "onChange"
   });
+  
   const addLimit = (data) => {
     const userId = localStorage.getItem('userId');
     const payload = {
@@ -127,7 +128,7 @@ const UserItem = ({ user }) => {
                     <p>Are you sure you want to remove this user?</p>
                     
                     </form>
-                    <button type="submit" onClick={handleSubmit(deleteUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
+                    <button type="submit" onClick={deleteUser} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal">No</button>
@@ -146,7 +147,7 @@ const UserItem = ({ user }) => {
                   <form className="pl-3 pr-3" >
                     <p>Are you sure you want to approve this user?</p>
                     </form>
-                    <button type="submit" onClick={handleSubmit(approveUser)} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
+                    <button type="submit" onClick={approveUser} style={{ margin: '0 1em' }} className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal" > Yes</button>
                     <button type="button" className="btn btn-outline-info submit-btn alert-btn"
                       data-dismiss="modal">No</button>
